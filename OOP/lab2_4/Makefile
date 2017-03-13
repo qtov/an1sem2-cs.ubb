@@ -1,7 +1,7 @@
 FLAGS=-Wall -Werror -Wextra -std=c11
 NAME=main.c
-EXEC=test
-CLASSES=ui/menu.c controller/controller.c validator.c repository/repository.c
+EXEC=t
+CLASSES=ui/menu.c controller/controller.c validator.c repository/repository.c repository/list.c
 
 all: $(EXEC)
 

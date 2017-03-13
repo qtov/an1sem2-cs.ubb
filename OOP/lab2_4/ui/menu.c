@@ -1,5 +1,60 @@
 #include <stdio.h>
 #include "controller.h"
+#include "list.h"
+#include "shared.h"
+#include <string.h>
+#include <stdlib.h>
+
+void			clear_buffer(void)
+{
+	while (getchar() != '\n')
+		;
+}
+
+unsigned long	read_reg_num(void)
+{
+	long	reg_num = -1;
+	
+	printf("Registration number: ");
+	scanf("%ld", &reg_num);
+	clear_buffer();
+	while (send_reg_num_validator(reg_num) == 0)
+	{
+		printf("Wrong registration number, retry.\n");
+		printf("Registration number: ");
+		scanf("%ld", &reg_num);
+		clear_buffer();
+	}
+	return ((unsigned long)reg_num);
+}
+
+void			read_model(char model[])
+{
+	printf("Model: ");
+	scanf("%[^\n]", model);
+	while (send_model_validator(model) == 0)
+	{
+		clear_buffer();
+		printf("Model too short/long.\n");
+		printf("Model: ");
+		scanf("%[^\n]", model);
+	}
+	clear_buffer();
+}
+
+void			read_category(char category[])
+{
+	printf("Category: ");
+	scanf("%[^\n]", category);
+	while (send_category_validator(category) == 0)
+	{
+		clear_buffer();
+		printf("Wrong category, retry.\n");
+		printf("Category: ");
+		scanf("%[^\n]", category);
+	}
+	clear_buffer();
+}
 
 void			show_menu(void)
 {
@@ -8,50 +63,171 @@ void			show_menu(void)
 	printf("3. Loan/return car.\n");
 	printf("4. View cars based on a criteria.\n");
 	printf("5. Sort cars.\n");
-	printf("6. Exit.\n");
+	printf("6. Show cars.\n");
+	printf("7. Exit.\n");
 }
 
-void			show_menu_add(void)
+void			ui_add(void)
 {
 	unsigned long	reg_num = 0;
 	char			model[100];
 	char			category[10];
 
-	printf("Registration number: ");
-	scanf("%lu", &reg_num);
-	while (send_reg_num_validator(reg_num) == 0)
+	strcpy(model, "");
+	strcpy(category, "");
+	reg_num = read_reg_num();
+	if (reg_num == 0)
+		return;
+	read_model(model);
+	read_category(category);
+	if (send_car_repository(reg_num, model, category) == 1)
+		printf("\nAdd successful.\n\n");
+	else
+		printf("\nSame registration number already exists.\n\n");
+}
+
+void			ui_edit(void)
+{
+	unsigned long	reg_num;
+	char			model[100];
+	char			category[10];
+	
+	strcpy(model, "");
+	strcpy(category, "");
+	reg_num = read_reg_num();
+	if (reg_num == 0)
+		return;
+	while (check_car_exists(reg_num) == 0)
 	{
-		while (getchar() != '\n')
-			;
 		printf("Wrong registration number, retry.\n");
-		printf("Registration number: ");
-		scanf("%lu", &reg_num);
+		reg_num = read_reg_num();
+		if (reg_num == 0)
+			return;
 	}
-	printf("Model: ");
-	while (getchar() != '\n')
-		;
-	scanf("%[^\n]", model);
-	while (send_model_validator(model) == 0)
+	read_model(model);
+	read_category(category);
+	send_car_edit(reg_num, model, category);
+}
+
+void			ui_loan(void)
+{
+	unsigned long	reg_num;
+	unsigned char	loan_request;
+	
+	reg_num = read_reg_num();
+	if (reg_num == 0)
+		return;
+	while (check_car_exists(reg_num) == 0)
 	{
-		while (getchar() != '\n')
-			;
-		printf("Model empty or too long.\n");
-		printf("Model: ");
-		scanf("%[^\n]", model);
+		printf("Wrong registration number, retry.\n");
+		reg_num = read_reg_num();
+		if (reg_num == 0)
+			return;
 	}
-	while (getchar() != '\n')
-			;
-	printf("Category: ");
-	scanf("%[^\n]", category);
-	while (send_category_validator(category) == 0)
+	loan_request = send_loan_request(reg_num);
+	if (loan_request == 1)
+		printf("Car loaned successfully.\n");
+	else if (loan_request == 0)
+		printf("Car returned.\n");
+	else
+		printf("Fatal error. Kill the programmer.\n");
+}
+
+void			show_submenu(void)
+{
+	printf("1. Model.\n");
+	printf("2. Categorie.\n");
+}
+
+void			ui_criteria(void)
+{
+	unsigned char	input = 0;
+	char			model[100];
+	char			category[10];
+	Node			*tmp_list = NULL;
+	
+	strcpy(model, "");
+	strcpy(category, "");
+	show_submenu();
+	printf("Choice: ");
+	scanf("%hhu", &input);
+	if (input == 1)
 	{
-		while (getchar() != '\n')
-			;
-		printf("Wrong category, retry.\n");
-		printf("Category: ");
-		scanf("%[^\n]", category);
+		clear_buffer();
+		read_model(model);
+		tmp_list = list;
+		while (tmp_list != NULL)
+		{
+			if (strcmp(tmp_list->data.model, model) == 0)
+			{
+				printf("%lu, %s, %s, %hhu", tmp_list->data.reg_num, tmp_list->data.model, tmp_list->data.category, tmp_list->data.loaned);
+				printf("  ->  ");
+			}
+			tmp_list = tmp_list->next;
+		}
+		printf("\n");
 	}
-	send_car_repository(reg_num, model, category);
+	else if (input == 2)
+	{
+		clear_buffer();
+		read_category(category);
+		tmp_list = list;
+		while (tmp_list != NULL)
+		{
+			if (strcmp(tmp_list->data.category, category) == 0)
+			{
+				printf("%lu, %s, %s, %hhu", tmp_list->data.reg_num, tmp_list->data.model, tmp_list->data.category, tmp_list->data.loaned);
+				printf("  ->  ");
+			}
+			tmp_list = tmp_list->next;
+		}
+		printf("\n");
+	}
+}
+
+void			ui_sort(void)
+{
+	unsigned char	input = 0;
+	
+	show_submenu();
+	printf("Choice: ");
+	scanf("%hhu", &input);
+	if (input == 1)
+	{
+		Node	*sorted_list;
+		Node	*p;
+
+		sorted_list = send_sort_by_model(list);
+		p = sorted_list;
+		while (p != NULL)
+		{
+			Node	*tmp = p;
+			
+			printf("%lu, %s, %s, %hhu", p->data.reg_num, p->data.model, p->data.category, p->data.loaned);
+			printf("  ->  ");
+			p = p->next;
+			free(tmp);
+		}
+		printf("\n");
+	}
+	else if (input == 2)
+	{
+		Node	*sorted_list;
+		Node	*p;
+
+		sorted_list = send_sort_by_category(list);
+		p = sorted_list;
+		while (p != NULL)
+		{
+			Node	*tmp = p;
+			
+			printf("%lu, %s, %s, %hhu", p->data.reg_num, p->data.model, p->data.category, p->data.loaned);
+			printf("  ->  ");
+			p = p->next;
+			free(tmp);
+		}
+		printf("\n");
+	}
 }
 
 unsigned char	read_input(void)
@@ -60,14 +236,62 @@ unsigned char	read_input(void)
 	
 	printf("Choice: ");
 	scanf("%hhu", &input);
-	while (input < 1 || input > 6)
+	while (input < 1 || input > 7)
 	{
-		while (getchar() != '\n')
-			;
+		clear_buffer();
 		show_menu();
 		printf("Wrong input, retry.\n");
 		printf("Choice: ");
 		scanf("%hhu", &input);
 	}
 	return (input);
+}
+
+void			start_program(void)
+{
+	unsigned char	input = 0;
+
+	while (1)
+	{
+		show_menu();
+		input = read_input();
+		if (input == 1)
+		{
+			ui_add();
+		}
+		else if (input == 2)
+		{
+			ui_edit();
+		}
+		else if (input == 3)
+		{
+			ui_loan();
+		}
+		else if (input == 4)
+		{
+			ui_criteria();
+		}
+		else if (input == 5)
+		{
+			ui_sort();
+		}
+		else if (input == 6)
+		{
+			Node	*p;
+
+			p = list;
+			while (p != NULL)
+			{
+				printf("%lu, %s, %s, %hhu", p->data.reg_num, p->data.model, p->data.category, p->data.loaned);
+				printf("  ->  ");
+				p = p->next;
+			}
+			printf("\n");
+		}
+		else if (input == 7)
+		{
+			send_clear_repo(&list);
+			return;
+		}
+	}
 }

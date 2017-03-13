@@ -4,7 +4,7 @@
 #include "car.h"
 
 typedef struct node_s{
-	Car				car;
+	Car				data;
 	struct node_s*	next;
 }					Node;
 
