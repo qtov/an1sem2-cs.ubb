@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include "controller.h"
 #include "list.h"
-#include "shared.h"
 #include <string.h>
 #include <stdlib.h>
 
@@ -67,7 +66,7 @@ void			show_menu(void)
 	printf("7. Exit.\n");
 }
 
-void			ui_add(void)
+void			ui_add(Node **list)
 {
 	unsigned long	reg_num = 0;
 	char			model[100];
@@ -80,13 +79,13 @@ void			ui_add(void)
 		return;
 	read_model(model);
 	read_category(category);
-	if (send_car_repository(reg_num, model, category) == 1)
+	if (send_car_repository(list, reg_num, model, category) == 1)
 		printf("\nAdd successful.\n\n");
 	else
 		printf("\nSame registration number already exists.\n\n");
 }
 
-void			ui_edit(void)
+void			ui_edit(Node **list)
 {
 	unsigned long	reg_num;
 	char			model[100];
@@ -97,7 +96,7 @@ void			ui_edit(void)
 	reg_num = read_reg_num();
 	if (reg_num == 0)
 		return;
-	while (check_car_exists(reg_num) == 0)
+	while (check_car_exists(*list, reg_num) == 0)
 	{
 		printf("Wrong registration number, retry.\n");
 		reg_num = read_reg_num();
@@ -106,10 +105,10 @@ void			ui_edit(void)
 	}
 	read_model(model);
 	read_category(category);
-	send_car_edit(reg_num, model, category);
+	send_car_edit(list, reg_num, model, category);
 }
 
-void			ui_loan(void)
+void			ui_loan(Node **list)
 {
 	unsigned long	reg_num;
 	unsigned char	loan_request;
@@ -117,14 +116,14 @@ void			ui_loan(void)
 	reg_num = read_reg_num();
 	if (reg_num == 0)
 		return;
-	while (check_car_exists(reg_num) == 0)
+	while (check_car_exists(*list, reg_num) == 0)
 	{
 		printf("Wrong registration number, retry.\n");
 		reg_num = read_reg_num();
 		if (reg_num == 0)
 			return;
 	}
-	loan_request = send_loan_request(reg_num);
+	loan_request = send_loan_request(list, reg_num);
 	if (loan_request == 1)
 		printf("Car loaned successfully.\n");
 	else if (loan_request == 0)
@@ -139,7 +138,7 @@ void			show_submenu(void)
 	printf("2. Categorie.\n");
 }
 
-void			ui_criteria(void)
+void			ui_criteria(Node **list)
 {
 	unsigned char	input = 0;
 	char			model[100];
@@ -155,7 +154,7 @@ void			ui_criteria(void)
 	{
 		clear_buffer();
 		read_model(model);
-		tmp_list = list;
+		tmp_list = *list;
 		while (tmp_list != NULL)
 		{
 			if (strcmp(tmp_list->data.model, model) == 0)
@@ -171,7 +170,7 @@ void			ui_criteria(void)
 	{
 		clear_buffer();
 		read_category(category);
-		tmp_list = list;
+		tmp_list = *list;
 		while (tmp_list != NULL)
 		{
 			if (strcmp(tmp_list->data.category, category) == 0)
@@ -183,9 +182,10 @@ void			ui_criteria(void)
 		}
 		printf("\n");
 	}
+	(void)list;
 }
 
-void			ui_sort(void)
+void			ui_sort(Node **list)
 {
 	unsigned char	input = 0;
 	
@@ -197,7 +197,7 @@ void			ui_sort(void)
 		Node	*sorted_list;
 		Node	*p;
 
-		sorted_list = send_sort_by_model(list);
+		sorted_list = send_sort_by_model(*list);
 		p = sorted_list;
 		while (p != NULL)
 		{
@@ -215,7 +215,7 @@ void			ui_sort(void)
 		Node	*sorted_list;
 		Node	*p;
 
-		sorted_list = send_sort_by_category(list);
+		sorted_list = send_sort_by_category(*list);
 		p = sorted_list;
 		while (p != NULL)
 		{
@@ -250,30 +250,34 @@ unsigned char	read_input(void)
 void			start_program(void)
 {
 	unsigned char	input = 0;
+	Node			*list = NULL;
 
+	list = request_list_creation();
+	//push_node(&list, car); Testing purposes;
+	//show_node(list);
 	while (1)
 	{
 		show_menu();
 		input = read_input();
 		if (input == 1)
 		{
-			ui_add();
+			ui_add(&list);
 		}
 		else if (input == 2)
 		{
-			ui_edit();
+			ui_edit(&list);
 		}
 		else if (input == 3)
 		{
-			ui_loan();
+			ui_loan(&list);
 		}
 		else if (input == 4)
 		{
-			ui_criteria();
+			ui_criteria(&list);
 		}
 		else if (input == 5)
 		{
-			ui_sort();
+			ui_sort(&list);
 		}
 		else if (input == 6)
 		{

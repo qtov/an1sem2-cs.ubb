@@ -3,6 +3,20 @@
 #include <stdio.h>
 #include <string.h>
 
+void			show_node(Node *start)
+{
+	Node	*p;
+
+	p = start;
+	while (p != NULL)
+	{
+		printf("%lu, %s, %s, %hhu", p->data.reg_num, p->data.model, p->data.category, p->data.loaned);
+		printf("  ->  ");
+		p = p->next;
+	}
+	printf("\n");
+}
+
 Node			*new_node(Car car)
 {
 	Node	*p;
@@ -42,20 +56,6 @@ void			push_node(Node **start, Car car)
 			t = t->next;
 		t->next = p;
 	}
-}
-
-void			show_node(Node *start)
-{
-	Node	*p;
-
-	p = start;
-	while (p != NULL)
-	{
-		printf("%lu, %s, %s, %hhu", p->data.reg_num, p->data.model, p->data.category, p->data.loaned);
-		printf("  ->  ");
-		p = p->next;
-	}
-	printf("\n");
 }
 
 void			edit_node(Node **start, Car car)
@@ -101,11 +101,11 @@ void			clear_list(Node **start)
 	}
 }
 
-unsigned char	loan_car(Node *start, unsigned long reg_num)
+unsigned char	loan_car(Node **start, unsigned long reg_num)
 {
 	Node *p;
 
-	p = start;
+	p = *start;
 	while (p != NULL)
 	{
 		if (p->data.reg_num == reg_num)

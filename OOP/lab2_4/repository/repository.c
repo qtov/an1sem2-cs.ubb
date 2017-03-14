@@ -1,10 +1,16 @@
 #include "repository.h"
 #include "car.h"
-#include "shared.h"
 #include <string.h>
-#include <stdio.h>
+#include "list.h"
 
-unsigned char	repo_add_car(unsigned long reg_num, char model[], char category[])
+Node			*repo_construct(void)
+{
+	Node	*list_h = NULL;
+	
+	return (list_h);
+}
+
+unsigned char	repo_add_car(Node **list, unsigned long reg_num, char model[], char category[])
 {
 	Car		car;
 
@@ -12,25 +18,27 @@ unsigned char	repo_add_car(unsigned long reg_num, char model[], char category[])
 	strcpy(car.model, model);
 	strcpy(car.category, category);
 	car.loaned = 0;
-	if (!node_exists(list, car))
-		push_node(&list, car);
+	if (!node_exists(*list, car))
+	{
+		push_node(list, car);
+	}
 	else
 		return (0);
 	return (1);
 }
 
-unsigned char	car_exists(unsigned long reg_num)
+unsigned char	car_exists(Node *list, unsigned long reg_num)
 {
 	Car		car;
 	
 	car.reg_num = reg_num;
 	strcpy(car.model, "");
-	strcpy(car.category,"");
+	strcpy(car.category, "");
 	car.loaned = 0;
 	return (node_exists(list, car));
 }
 
-void			car_edit(unsigned long reg_num, char model[], char category[])
+void			car_edit(Node **list, unsigned long reg_num, char model[], char category[])
 {
 	Car		car;
 	
@@ -38,10 +46,10 @@ void			car_edit(unsigned long reg_num, char model[], char category[])
 	strcpy(car.model, model);
 	strcpy(car.category, category);
 	car.loaned = 0;
-	edit_node(&list, car);
+	edit_node(list, car);
 }
 
-unsigned char	loan_request(unsigned long reg_num)
+unsigned char	loan_request(Node **list, unsigned long reg_num)
 {
 	return (loan_car(list, reg_num));
 }

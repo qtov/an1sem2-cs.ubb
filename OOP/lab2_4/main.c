@@ -1,9 +1,9 @@
 #include "menu.h"
 #include "node.h"
 #include <stdlib.h>
-#include "shared.h"
+//#include "shared.h"
 
-Node	*list = NULL;
+//Node	*list = NULL;
 
 int		main(void)
 {
