@@ -1,13 +1,11 @@
 #include "menu.h"
 #include "node.h"
 #include <stdlib.h>
-//#include "shared.h"
-
-//Node	*list = NULL;
+#include "testing.h"
 
 int		main(void)
 {
-	//test_functions();
+	test_functions();
 	start_program();
 
 	return (0);

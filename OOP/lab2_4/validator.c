@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <ctype.h>
 
+/* Checks and returns if the registration number is valid */
 unsigned char	reg_num_valid(long reg_num)
 {
 	if (reg_num > -1 && reg_num < 1000000000)
@@ -10,6 +11,8 @@ unsigned char	reg_num_valid(long reg_num)
 		return (0);
 }
 
+/* Checks and returns if the category is valid.
+If the category given is equal to one in the list */
 unsigned char	category_valid(char category[])
 {
 	const unsigned char	arr_len = 4;
@@ -29,6 +32,8 @@ unsigned char	category_valid(char category[])
 	return (0);
 }
 
+/* Checks and return if the model is valid.
+If the model is between 2 and 50 characters*/
 unsigned char	model_valid(char model[])
 {
 	if (strlen(model) < 2 || strlen(model) > 50 || (!isalpha(model[0]) && !isdigit(model[0])))

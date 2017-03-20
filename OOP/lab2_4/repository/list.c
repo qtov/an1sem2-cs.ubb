@@ -1,8 +1,9 @@
 #include "node.h"
 #include <stdlib.h>
-#include <stdio.h>
+//#include <stdio.h> debug
 #include <string.h>
 
+/* Debugging only
 void			show_node(Node *start)
 {
 	Node	*p;
@@ -16,7 +17,9 @@ void			show_node(Node *start)
 	}
 	printf("\n");
 }
+*/
 
+/* Creates a new node and returns it */
 Node			*new_node(Car car)
 {
 	Node	*p;
@@ -27,6 +30,7 @@ Node			*new_node(Car car)
 	return (p);
 }
 
+/* Adds a new node at the beginning of the list */
 void			unshift_node(Node **start, Car car)
 {
 	Node	*p;
@@ -41,6 +45,7 @@ void			unshift_node(Node **start, Car car)
 	}
 }
 
+/* Adds a new node at the end of the list */
 void			push_node(Node **start, Car car)
 {
 	Node	*p;
@@ -58,6 +63,7 @@ void			push_node(Node **start, Car car)
 	}
 }
 
+/* Edits a node */
 void			edit_node(Node **start, Car car)
 {
 	Node *p;
@@ -75,6 +81,7 @@ void			edit_node(Node **start, Car car)
 	}
 }
 
+/* Checks if the node exists, 1 - exists, else 0 */
 int				node_exists(Node *start, Car car)
 {
 	Node *p;
@@ -89,6 +96,7 @@ int				node_exists(Node *start, Car car)
 	return (0);
 }
 
+/* Clears the list "start" */
 void			clear_list(Node **start)
 {
 	Node	*p;
@@ -101,6 +109,7 @@ void			clear_list(Node **start)
 	}
 }
 
+/* Changes the loan status of the car and returns the new status */
 unsigned char	loan_car(Node **start, unsigned long reg_num)
 {
 	Node *p;
@@ -118,6 +127,7 @@ unsigned char	loan_car(Node **start, unsigned long reg_num)
 	return (42); //Big problem if reached here.
 }
 
+/* Creates a new list and returns it, the list is sorted by model */
 Node			*sort_by_model(Node *start)
 {
 	Node			*p;
@@ -170,6 +180,7 @@ Node			*sort_by_model(Node *start)
 	return (new_list);
 }
 
+/* Creates a new list and returns it, the list is sorted by category */
 Node			*sort_by_category(Node *start)
 {
 	Node			*p;

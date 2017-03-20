@@ -4,12 +4,14 @@
 #include <string.h>
 #include <stdlib.h>
 
+/* Clears buffer */
 void			clear_buffer(void)
 {
 	while (getchar() != '\n')
 		;
 }
 
+/* Reads the registration number and sends for the controller to send for the validator. */
 unsigned long	read_reg_num(void)
 {
 	long	reg_num = -1;
@@ -27,6 +29,7 @@ unsigned long	read_reg_num(void)
 	return ((unsigned long)reg_num);
 }
 
+/* Reads the model and sends for the controller to send for the validator. */
 void			read_model(char model[])
 {
 	printf("Model: ");
@@ -41,6 +44,7 @@ void			read_model(char model[])
 	clear_buffer();
 }
 
+/* Reads the category and sends for the controller to send for the validator. */
 void			read_category(char category[])
 {
 	printf("Category: ");
@@ -66,6 +70,7 @@ void			show_menu(void)
 	printf("7. Exit.\n");
 }
 
+/* The interface + interaction for the adding option */
 void			ui_add(Node **list)
 {
 	unsigned long	reg_num = 0;
@@ -85,6 +90,7 @@ void			ui_add(Node **list)
 		printf("\nSame registration number already exists.\n\n");
 }
 
+/* The interface + interaction for the editing option */
 void			ui_edit(Node **list)
 {
 	unsigned long	reg_num;
@@ -108,6 +114,7 @@ void			ui_edit(Node **list)
 	send_car_edit(list, reg_num, model, category);
 }
 
+/* The interface + interaction for the loaning option */
 void			ui_loan(Node **list)
 {
 	unsigned long	reg_num;
@@ -138,6 +145,7 @@ void			show_submenu(void)
 	printf("2. Categorie.\n");
 }
 
+/* The interface + interaction for the criteria option */
 void			ui_criteria(Node **list)
 {
 	unsigned char	input = 0;
@@ -185,6 +193,7 @@ void			ui_criteria(Node **list)
 	(void)list;
 }
 
+/* The interface + interaction for the sorting option */
 void			ui_sort(Node **list)
 {
 	unsigned char	input = 0;
@@ -230,6 +239,7 @@ void			ui_sort(Node **list)
 	}
 }
 
+/* Reads input */
 unsigned char	read_input(void)
 {
 	unsigned char	input = 0;
