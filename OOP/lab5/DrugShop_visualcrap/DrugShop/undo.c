@@ -43,12 +43,9 @@ void			showNode(Node *start)
 		for (int i = 0; i<getSize(p->data); ++i) {
 			Element o;
 			o = getElement(p->data, i);
-			printf("Id:%d Name:%s Concentration:%s Quantity:%d\n", getId(o), getName(o), getConcentration(o), getQuantity(o));
 		}
-		printf(" -> \n");
 		p = p->next;
 	}
-	printf("\n------------------------------\n");
 }
 
 void			addListToUndo(Node** undoList, DrugList* drugList)
@@ -63,22 +60,10 @@ void			addListToUndo(Node** undoList, DrugList* drugList)
 		p = getElement(drugList, i);
 		p_new = createDrug(getId(p), getName(p), getConcentration(p), getQuantity(p));
 		addElement(newDrugList, p_new);
-		//printf("Id:%d Name:%s Concentration:%s Quantity:%d\n", getId(p_new), getName(p_new), getConcentration(p_new), getQuantity(p_new));
 	}
 	unshiftNode(undoList, newDrugList);
 	Node* p = *undoList;
 	showNode(p);
-	//i = 0;
-	/*while (p != NULL)
-	{
-		Element o;
-		o = getElement(p->data, i);
-		printf("%d, %s -> ", getSize(p->data), getName(o));
-		p = p->next;
-		++i;
-	}*/
-	//printf("\n");
-	//showNode(*undoList);
 }
 
 Node* doUndo(Node** list)
