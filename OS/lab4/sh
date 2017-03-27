@@ -1,0 +1,1 @@
+ls -laR `find . -type f -name "*" ` | egrep "^\-.{7}w"

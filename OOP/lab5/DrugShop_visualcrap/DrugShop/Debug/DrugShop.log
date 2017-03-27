@@ -1,0 +1,4 @@
+﻿  controller.c
+d:\university\coding\sem_2\oop\lab5\drugshop_visualcrap\drugshop\controller.c(28): warning C4013: 'destroyUndo' undefined; assuming extern returning int
+  DrugShop.vcxproj -> D:\University\Coding\sem_2\OOP\lab5\DrugShop_visualcrap\Debug\DrugShop.exe
+  DrugShop.vcxproj -> D:\University\Coding\sem_2\OOP\lab5\DrugShop_visualcrap\Debug\DrugShop.pdb (Partial PDB)

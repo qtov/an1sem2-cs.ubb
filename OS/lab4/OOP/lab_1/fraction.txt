@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <string.h>
+
+void	print_decimals(int k, int m, int n)
+{
+	printf("%d.", (int)k/m);
+	k = k % m;
+	while (n > 0)
+	{
+		k *= 10;
+		printf("%d", (int)k/m);
+		k %= m;
+		--n;
+	}
+	printf("\n");
+}
+
+int		main(void)
+{
+	int		sum = 0;
+	int		k, m, n;
+	
+	
+	printf("Numaratorul fractiei: ");
+	scanf("%d", &k);
+	printf("Numitorul fractiei: ");
+	scanf("%d", &m);
+	printf("Cate zecimale sa fie calculate(n)?\n");
+	scanf("%d", &n);
+	print_decimals(k, m, n);
+	return (0);
+}
