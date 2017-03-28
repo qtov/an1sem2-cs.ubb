@@ -41,7 +41,6 @@ void store(DrugRepo* repo, Drug* newDrug) {
 		}
 	}
 	addElement(repo->drugList, newDrug);
-	//printf("is now: %d\n", getSize(repo->drugList));
 }
 
 /**

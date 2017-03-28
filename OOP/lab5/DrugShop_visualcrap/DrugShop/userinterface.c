@@ -145,7 +145,7 @@ void sortDrugsUI(DrugController* ctr) {
 }
 
 void printUndoUI(DrugController* ctr) {
-	showNode(ctr->undo);
+	//showNode(ctr->undo);
 	undoC(ctr);
 }
 

@@ -62,8 +62,6 @@ void			addListToUndo(Node** undoList, DrugList* drugList)
 		addElement(newDrugList, p_new);
 	}
 	unshiftNode(undoList, newDrugList);
-	Node* p = *undoList;
-	showNode(p);
 }
 
 Node* doUndo(Node** list)
