@@ -3,11 +3,17 @@
 #include <stdio.h>
 #include "controller.h"
 
-Node * createUndoList()
+/*
+Creates the undo list
+*/
+Node			*createUndoList()
 {
 	return NULL;
 }
 
+/*
+Creates a new node
+*/
 Node			*newNode(DrugList* list)
 {
 	Node	*p;
@@ -19,6 +25,9 @@ Node			*newNode(DrugList* list)
 	return (p);
 }
 
+/*
+Adds a node in front of the list
+*/
 void			unshiftNode(Node** undoList, DrugList* list)
 {
 	Node	*p;
@@ -33,6 +42,7 @@ void			unshiftNode(Node** undoList, DrugList* list)
 	}
 }
 
+/* Debug
 void			showNode(Node *start)
 {
 	Node	*p;
@@ -47,7 +57,11 @@ void			showNode(Node *start)
 		p = p->next;
 	}
 }
+*/
 
+/*
+Adds a drug list to the undo list
+*/
 void			addListToUndo(Node** undoList, DrugList* drugList)
 {
 	DrugList* newDrugList = createDrugList();
@@ -64,7 +78,10 @@ void			addListToUndo(Node** undoList, DrugList* drugList)
 	unshiftNode(undoList, newDrugList);
 }
 
-Node* doUndo(Node** list)
+/*
+Does the undo job
+*/
+Node*			doUndo(Node** list)
 {
 	Node *p;
 
@@ -74,7 +91,10 @@ Node* doUndo(Node** list)
 	return (p);
 }
 
-void destroyUndo(Node** list) {
+/*
+Destroys the undo list and everything in the world.
+*/
+void			destroyUndo(Node** list) {
 	Node* p;
 
 	p = *list;

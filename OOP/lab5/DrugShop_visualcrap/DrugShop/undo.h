@@ -8,9 +8,9 @@ typedef struct node_s {
 	struct node_s*	next;
 }					Node;
 
-Node* createUndoList();
-Node* newNode(DrugList);
+Node*	createUndoList();
+Node*	newNode(DrugList*);
 void	addListToUndo(Node**, DrugList*);
-void			showNode(Node *start);
-void			unshiftNode(Node** undoList, DrugList* list);
+//void	showNode(Node *start); Debug
+void	unshiftNode(Node** undoList, DrugList* list);
 Node*	doUndo(Node**);
