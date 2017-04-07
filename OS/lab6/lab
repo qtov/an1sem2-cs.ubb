@@ -1,0 +1,3 @@
+fork() => -1 nu poate face
+=> 0 daca sunt in fiu
+=> >0 daca se poate face fiu < 32767(sau whatever)
