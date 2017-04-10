@@ -13,5 +13,6 @@ void	Controller::__debug_write()
 
 void	Controller::destroy()
 {
-	//delete this->repository;
+	repository->destroy();
+	delete this;
 }
