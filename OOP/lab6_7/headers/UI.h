@@ -3,6 +3,7 @@
 
 #include "debug.h"
 #include "Controller.h"
+#include <iostream>
 
 class UI
 {
@@ -10,9 +11,9 @@ public:
 	UI(Controller*);
 	void		start();
 	void		destroy();
-	char		potaot[500];
+	void		show_menu();
 
-//private:
+private:
 	Controller* controller;
 };
 

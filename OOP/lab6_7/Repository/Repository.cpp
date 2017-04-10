@@ -1,8 +1,10 @@
 #include "Repository.h"
 
+using namespace std;
+
 void	Repository::__debug_write()
 {
-	std::cout<<"Repository\n";
+	cout<<"Repository\n";
 }
 
 void	Repository::destroy()

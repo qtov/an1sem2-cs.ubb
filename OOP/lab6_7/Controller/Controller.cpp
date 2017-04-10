@@ -1,5 +1,7 @@
 #include "Controller.h"
 
+using namespace std;
+
 Controller::Controller(Repository* _repository)
 {
 	this->repository = _repository;
@@ -7,7 +9,7 @@ Controller::Controller(Repository* _repository)
 
 void	Controller::__debug_write()
 {
-	std::cout<<"Controller\n";
+	cout<<"Controller\n";
 	this->repository->__debug_write();
 }
 
