@@ -7,5 +7,5 @@ void	Repository::__debug_write()
 
 void	Repository::destroy()
 {
-	//delete this;
+	delete this;
 }

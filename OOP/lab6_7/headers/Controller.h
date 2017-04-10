@@ -6,11 +6,12 @@
 class Controller
 {
 public:
+	char	potato[1000];
 	Controller(Repository*);
 	void	__debug_write();
 	void	destroy();
 
-private:
+//private:
 	Repository* repository;
 };
 

@@ -10,8 +10,9 @@ public:
 	UI(Controller*);
 	void		start();
 	void		destroy();
+	char		potaot[500];
 
-private:
+//private:
 	Controller* controller;
 };
 
