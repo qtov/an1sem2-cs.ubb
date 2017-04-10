@@ -7,9 +7,9 @@
 
 class Builder {
 public:
-	Repository	getRepository();
-	Controller	getController();
-	UI			getUI();
-}
+	Repository*	getRepository() const;
+	Controller*	getController() const;
+	UI*			getUI() const;
+};
 
 #endif

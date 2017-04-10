@@ -1,19 +1,19 @@
-#include "Repository.h"
+#include "Builder.h"
 
-UI			Builder::getUI(const Controller& controller)
+UI*			Builder::getUI() const
 {
-	UI	ui(getController());
+	UI*	ui = new UI(getController());
 	return (ui);
 }
 
-Controller	Builder::getController()
+Controller*	Builder::getController() const
 {
-	Controller controller(getRepository());
+	Controller* controller = new Controller(getRepository());
 	return (controller);
 }
 
-Repository	Builder::getRepository()
+Repository*	Builder::getRepository() const
 {
-	Repository repo;
+	Repository* repo = new Repository();
 	return (repo);
 }

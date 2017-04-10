@@ -7,6 +7,6 @@ $(NAME):
 	g++ -o $(NAME) main.cpp $(SRC) -Iheaders/
 
 clean:
-	rm -f t
+	@rm -f $(NAME)
 
 re: clean all
