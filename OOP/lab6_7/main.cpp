@@ -10,9 +10,9 @@ int	main()
 		Builder	builder;
 		UI*		ui = builder.getUI();
 	
-		ui->start();
+		ui->start();a
 		// printf("%p, %p, %p->main\n", ui, ui->controller, ui->controller->repository);
-		ui->destroy();
+		delete ui;
 	}
 	return (0);
 }

@@ -10,6 +10,7 @@ public:
 	Repository*	getRepository() const;
 	Controller*	getController() const;
 	UI*			getUI() const;
+	Validator*	getValidator() const;
 };
 
 #endif

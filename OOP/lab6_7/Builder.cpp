@@ -9,7 +9,7 @@ UI*			Builder::getUI() const
 
 Controller*	Builder::getController() const
 {
-	Controller* controller = new Controller(getRepository());
+	Controller* controller = new Controller(getRepository(), getValidator());
 	// printf("%p, ", controller);
 	return (controller);
 }
@@ -19,4 +19,11 @@ Repository*	Builder::getRepository() const
 	Repository* repo = new Repository();
 	// printf("%p, ", repo);
 	return (repo);
+}
+
+Validator*	Builder::getValidator() const
+{
+	Validator* validator = new Validator();
+
+	return (validator);
 }

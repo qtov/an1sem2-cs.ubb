@@ -2,9 +2,10 @@
 
 using namespace std;
 
-Controller::Controller(Repository* _repository)
+Controller::Controller(Repository* _repository, Validator* _validator)
 {
 	this->repository = _repository;
+	this->validator = _validator;
 }
 
 void	Controller::__debug_write()
@@ -13,8 +14,13 @@ void	Controller::__debug_write()
 	this->repository->__debug_write();
 }
 
-void	Controller::destroy()
+Controller::~Controller()
 {
-	repository->destroy();
-	delete this;
+	delete this->repository;
+	delete this->validator;
+}
+
+bool	Controller::isvalid_input(const string& s)
+{
+	return this->validator->isvalid_input(s);
 }

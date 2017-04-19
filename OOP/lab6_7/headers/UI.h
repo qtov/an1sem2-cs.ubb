@@ -9,12 +9,13 @@ class UI
 {
 public:
 	UI(Controller*);
+	~UI();
 	void		start();
-	void		destroy();
-	void		show_menu();
 
 private:
 	Controller* controller;
+	void		show_menu();
+	void		add();
 };
 
 #endif

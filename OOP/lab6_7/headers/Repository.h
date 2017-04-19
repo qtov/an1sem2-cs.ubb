@@ -2,12 +2,14 @@
 #define REPOSITORY_H
 
 #include "debug.h"
+#include <string>
 
 class Repository
 {
 public:
+
 	void	__debug_write();
-	void	destroy();
+	~Repository();
 };
 
 #endif
