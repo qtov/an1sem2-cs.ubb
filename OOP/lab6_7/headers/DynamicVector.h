@@ -1,7 +1,7 @@
 #ifndef LIST_H
 #define LIST_H
 
-#include "node.h"
+#include "Node.h"
 #include "Iterator.h"
 #include <iterator>
 

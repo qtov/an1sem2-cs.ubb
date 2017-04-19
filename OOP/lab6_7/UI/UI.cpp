@@ -21,12 +21,66 @@ void	UI::show_menu()
 
 void	UI::add()
 {
-	adsed
+	string	title, description, type, input;
+	int		duration, isvalid;
+
+	isvalid = 0;
+	while (!isvalid)
+	{
+		cout << "Title = ";
+		getline(cin, title);
+		if (title == "0") return;
+		if (this->controller->isvalid_title(title))
+		{
+			isvalid = 1;
+		}
+		else
+		{
+			cout << "Retry...\n";
+		}
+	}
+
+	cout << "Description = ";
+	getline(cin, description);
+	if (description == "0") return;
+
+	isvalid = 0;
+	while (!isvalid)
+	{
+		cout << "Type = ";
+		getline(cin, type);
+		if (type == "0") return;
+		if (this->controller->isvalid_type(type))
+		{
+			isvalid = 1;
+		}
+		else
+		{
+			cout << "Retry...\n";
+		}
+	}
+
+	isvalid = 0;
+	while (!isvalid)
+	{
+		cout << "Duration = ";
+		getline(cin, input);
+		if (input == "0") return;
+		if (this->controller->isvalid_number(input) && !input.empty())
+		{
+			isvalid = 1;
+			duration = stoi(input);
+		}
+		else
+		{
+			cout << "Retry...\n";
+		}
+	}
+	this->controller->add(title, description, type, duration);
 }
 
 void	UI::start()
 {
-	//cout<<"UI\n";
 	int		input = 0;
 	string	inputline;
 
@@ -35,7 +89,7 @@ void	UI::start()
 		this->show_menu();
 		cout << "Input: ";
 		getline(cin, inputline);
-		if (this->controller->isvalid_input(inputline) && !inputline.empty())
+		if (this->controller->isvalid_number(inputline) && !inputline.empty())
 		{
 			input = stoi(inputline);
 			switch (input)

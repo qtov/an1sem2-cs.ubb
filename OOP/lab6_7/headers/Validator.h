@@ -8,8 +8,9 @@ class Validator
 public:
 	Validator();
 	~Validator();
-	bool	isvalid_input(const std::string&);
-
+	bool	isvalid_number(const std::string&);
+	bool	isvalid_title(const std::string&);
+	bool	isvalid_type(const std::string&);
 };
 
 #endif
