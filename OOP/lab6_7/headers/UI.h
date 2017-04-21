@@ -14,8 +14,9 @@ public:
 
 private:
 	Controller* controller;
-	void		show_menu();
+	void		show_menu() const;
 	void		add();
+	void		display();
 };
 
 #endif

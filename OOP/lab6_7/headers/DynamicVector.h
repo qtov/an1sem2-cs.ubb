@@ -1,6 +1,7 @@
-#ifndef LIST_H
-#define LIST_H
+#ifndef DYNAMICVECTOR_H
+#define DYNAMICVECTOR_H
 
+#include "debug.h"
 #include "Node.h"
 #include "Iterator.h"
 #include <iterator>
@@ -8,19 +9,23 @@
 template <typename T>
 class DynamicVector
 {
-	Node<T>*	head;
-	void		deleteAll();
-	Node<T>*	copy(Node<T>* current);
+	Node<T>*		head;
+	void			deleteAll();
+	Node<T>*		copy(Node<T>* current);
+	int				size;
+	Node<T>*		tail;
 public:
-	DynamicVector() : head{ nullptr } {};
-	DynamicVector(const DynamicVector& ot);
-	void		operator=(const DynamicVector& ot);
+	DynamicVector();
+	void			unshift(const T& v);
+	DynamicVector&	operator=(const DynamicVector& v);
+	void			push(const T& v);
+	int				get_size() const;
+	Iterator<T>		begin();
+	Iterator<T>		end();
+	void			display();
+	T& 				operator[](int pos);
+	T&				at_index(int pos);
 	~DynamicVector();
-	int			size;
-	void		unshift(T v);
-	void		push(T v);
-	Iterator<T>	begin();
-	Iterator<T>	end();
 };
 
 #endif

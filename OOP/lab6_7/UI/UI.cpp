@@ -7,7 +7,7 @@ UI::UI(Controller* _controller)
 	this->controller = _controller;
 }
 
-void	UI::show_menu()
+void	UI::show_menu() const
 {
 	cout << "1. Add activity.\n";
 	cout << "2. Delete activity.\n";
@@ -79,6 +79,15 @@ void	UI::add()
 	this->controller->add(title, description, type, duration);
 }
 
+void	UI::display()
+{
+	DynamicVector<Activity> *list;
+
+	list = this->controller->get_list();
+	list->display();
+	delete list;
+}
+
 void	UI::start()
 {
 	int		input = 0;
@@ -104,7 +113,7 @@ void	UI::start()
 					
 					break;
 				case 4 : 
-					
+					this->display();
 					break;
 				case 5 : 
 					
