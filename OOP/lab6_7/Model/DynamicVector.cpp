@@ -5,6 +5,7 @@ DynamicVector<T>::DynamicVector()
 {
 	this->size = 0;
 	this->head = nullptr;
+	this->tail = nullptr;
 }
 
 
@@ -70,7 +71,6 @@ template <typename T>
 T&					DynamicVector<T>::operator[](int pos)
 {
 	Node<T>*	o;
-	Activity*	fucking_activity = new Activity("asd", "asd", "qwe", 3);
 	int			i;
 
 	o = this->head;
@@ -78,11 +78,11 @@ T&					DynamicVector<T>::operator[](int pos)
 	while (o != nullptr)
 	{
 		if (i == pos)
-			;//return o->data;
+			return o->data;
 		++i;
 		o = o->next;
 	}
-	return *fucking_activity;
+	throw std::invalid_argument("Invalid index");
 }
 
 template <typename T>
@@ -101,6 +101,94 @@ T&					DynamicVector<T>::at_index(int pos)
 		o = o->next;
 	}
 	throw std::invalid_argument("Invalid index");
+}
+
+template <typename T>
+bool				DynamicVector<T>::exists(const T& elem)
+{
+	Node<T>*	o;
+
+	o = this->head;
+	while (o != nullptr)
+	{
+		if (o->data == elem)
+		{
+			return true;
+		}
+		o = o->next;
+	}
+	return false;
+}
+
+template <typename T>
+void				DynamicVector<T>::remove(const T& elem)
+{
+	if (!this->exists(elem))
+		throw invalid_argument("Element does not exist.");
+
+	Node<T>*	o;
+	o = this->head;
+	if (o->data == elem)
+	{
+		Node<T>*	tmp;
+
+		tmp = this->head;
+		this->head = o->next;
+		tmp->next = nullptr;
+		delete tmp;
+	}
+	else
+		while (o->next != nullptr)
+		{
+			if (o->next->data == elem)
+			{
+				Node<T>*	tmp;
+
+				tmp = o->next;
+				o->next = o->next->next;
+				tmp->next = nullptr;
+				delete tmp;
+			}
+			else
+				o = o->next;
+		}
+	--this->size;
+}
+
+template <typename T>
+int					DynamicVector<T>::index_of(const T& elem)
+{
+	Node<T>*	o;
+	int			i = 0;
+
+	o = this->head;
+	while (o != nullptr)
+	{
+		if (o->data == elem)
+		{
+			return i;
+		}
+		o = o->next;
+		++i;
+	}
+	return -1;
+}
+
+template <typename T>
+void				DynamicVector<T>::edit(const T& elem)
+{
+	Node<T>*	o;
+
+	o = this->head;
+	while (o != nullptr)
+	{
+		if (o->data == elem)
+		{
+			o->data = elem;
+			return;
+		}
+		o = o->next;
+	}
 }
 
 template class DynamicVector < Activity >;

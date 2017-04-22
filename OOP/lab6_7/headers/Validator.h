@@ -11,6 +11,7 @@ public:
 	bool	isvalid_number(const std::string&);
 	bool	isvalid_title(const std::string&);
 	bool	isvalid_type(const std::string&);
+	bool	isvalid_description(const std::string&);
 };
 
 #endif

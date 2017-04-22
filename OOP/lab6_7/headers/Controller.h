@@ -9,12 +9,18 @@ class Controller
 public:
 	Controller(Repository*, Validator*);
 	~Controller();
-	void			__debug_write();
-	bool			isvalid_number(const std::string&) const;
-	bool			isvalid_title(const std::string&) const;
-	bool			isvalid_type(const std::string&) const;
+	void						__debug_write();
+	bool						isvalid_number(const std::string&) const;
+	bool						isvalid_title(const std::string&) const;
+	bool						isvalid_type(const std::string&) const;
+	bool						isvalid_description(const string&) const;
 	DynamicVector<Activity>*	get_list() const;
-	void			add(const std::string&, const std::string&, const std::string&, const int&);
+	void						add(const std::string&, const std::string&, const std::string&, const int&);
+	void						remove(const std::string&);
+	bool						exists(const std::string&);
+	void						edit(std::string&, std::string&, std::string&, std::string&);
+	void						init();
+	Activity&					get_elem(const std::string&);
 
 private:
 	Repository* repository;

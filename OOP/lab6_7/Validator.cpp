@@ -20,6 +20,15 @@ bool	Validator::isvalid_title(const string& s)
 	return (1);
 }
 
+bool	Validator::isvalid_description(const string& s)
+{
+	int	len = s.length();
+
+	if (len < 1 || len > 1000)
+		return (0);
+	return (1);
+}
+
 bool	Validator::isvalid_type(const string& s)
 {
 	int	len = s.length();

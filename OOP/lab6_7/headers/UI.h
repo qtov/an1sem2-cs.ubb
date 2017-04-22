@@ -17,6 +17,13 @@ private:
 	void		show_menu() const;
 	void		add();
 	void		display();
+	void		remove();
+	void		edit();
+	void		search();
+	string		read_title();
+	string		read_type();
+	int			read_duration();
+	string		read_description();
 };
 
 #endif

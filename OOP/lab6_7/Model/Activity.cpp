@@ -55,6 +55,13 @@ int		Activity::get_duration() const
 	return this->duration;
 }
 
+bool	Activity::operator==(const Activity& v)
+{
+	if (this->get_title() == v.get_title())
+		return true;
+	return false;
+}
+
 Activity&	Activity::operator=(const Activity& v)
 {
 	if(this == &v)

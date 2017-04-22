@@ -25,6 +25,7 @@ public:
 		return stream;
 	}
 	Activity&	operator=(const Activity& v);
+	bool	operator==(const Activity& v);
 
 private:
 	string	title;
