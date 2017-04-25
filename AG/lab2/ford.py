@@ -43,12 +43,12 @@ def test():
 	matrix_a[4][3] = -1
 	matrix_a[5][4] = 1
 
-	# assert solve(matrix_a, 0) == [0, 5, 5, 7, 9, 8]
-	# assert solve(matrix_a, 1) == [float('inf'), 0, 0, 2, float('inf'), float('inf')]
-	# assert solve(matrix_a, 2) == [float('inf'), 1, 0, 3, float('inf'), float('inf')]
-	# assert solve(matrix_a, 3) == [float('inf'), -1, -2, 0, float('inf'), float('inf')]
-	# assert solve(matrix_a, 4) == [float('inf'), -4, -4, -2, 0, float('inf')]
-	# assert solve(matrix_a, 5) == [float('inf'), -3, -3, -1, 1, 0]
+	assert solve(matrix_a, 0) == [0, 5, 5, 7, 9, 8]
+	assert solve(matrix_a, 1) == [float('inf'), 0, 0, 2, float('inf'), float('inf')]
+	assert solve(matrix_a, 2) == [float('inf'), 1, 0, 3, float('inf'), float('inf')]
+	assert solve(matrix_a, 3) == [float('inf'), -1, -2, 0, float('inf'), float('inf')]
+	assert solve(matrix_a, 4) == [float('inf'), -4, -4, -2, 0, float('inf')]
+	assert solve(matrix_a, 5) == [float('inf'), -3, -3, -1, 1, 0]
 
 	num_nodes = 6
 	matrix_a = [[0 for y in range(num_nodes)] for x in range(num_nodes)]
@@ -62,12 +62,12 @@ def test():
 	matrix_a[2][5] = 1
 	matrix_a[4][5] = 2
 
-	# assert solve(matrix_a, 0) == [0, float('inf'), 2, float('inf'), float('inf'), 3]
-	# assert solve(matrix_a, 1) == [float('inf'), 0, 3, 1, float('inf'), 4]
-	# assert solve(matrix_a, 2) == [float('inf'), float('inf'), 0, float('inf'), float('inf'), 1]
-	# assert solve(matrix_a, 3) == [float('inf'), float('inf'), 2, 0, float('inf'), 3]
-	# assert solve(matrix_a, 4) == [float('inf'), float('inf'), float('inf'), float('inf'), 0, 2]
-	# assert solve(matrix_a, 5) == [float('inf'), float('inf'), float('inf'), float('inf'), float('inf'), 0]
+	assert solve(matrix_a, 0) == [0, float('inf'), 2, float('inf'), float('inf'), 3]
+	assert solve(matrix_a, 1) == [float('inf'), 0, 3, 1, float('inf'), 4]
+	assert solve(matrix_a, 2) == [float('inf'), float('inf'), 0, float('inf'), float('inf'), 1]
+	assert solve(matrix_a, 3) == [float('inf'), float('inf'), 2, 0, float('inf'), 3]
+	assert solve(matrix_a, 4) == [float('inf'), float('inf'), float('inf'), float('inf'), 0, 2]
+	assert solve(matrix_a, 5) == [float('inf'), float('inf'), float('inf'), float('inf'), float('inf'), 0]
 
 	num_nodes = 6
 	matrix_a = [[0 for y in range(num_nodes)] for x in range(num_nodes)]
