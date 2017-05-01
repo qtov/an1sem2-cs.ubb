@@ -15,11 +15,15 @@ public:
 private:
 	Controller* controller;
 	void		show_menu() const;
+	void		show_menu_filter() const;
+	void		show_menu_sort() const;
 	void		add();
 	void		display();
 	void		remove();
 	void		edit();
 	void		search();
+	void		filter();
+	void		sort();
 	string		read_title();
 	string		read_type();
 	int			read_duration();

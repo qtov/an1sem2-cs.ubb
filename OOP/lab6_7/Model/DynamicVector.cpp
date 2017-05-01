@@ -23,6 +23,20 @@ void				DynamicVector<T>::display()
 }
 
 template <typename T>
+void				DynamicVector<T>::display_once()
+{
+	Node<T>*	o;
+
+	o = this->head;
+	while (o != nullptr)
+	{
+		cout << o->data.get_title() << "; " << o->data.get_description() << "; " << o->data.get_type() << "; " << o->data.get_duration() << "\n";
+		o = o->next;
+	}
+	delete this;
+}
+
+template <typename T>
 void				DynamicVector<T>::push(const T& v)
 {
 	Node<T>	*p;
@@ -54,12 +68,6 @@ DynamicVector<T>&	DynamicVector<T>::operator=(const DynamicVector<T>& v)
 
 	return *this;
 }
-
-// template <typename T>
-// Node<T>*			DynamicVector<T>::get_head()
-// {
-// 	return this->head; //delete
-// }
 
 template <typename T>
 DynamicVector<T>::~DynamicVector()
@@ -136,6 +144,7 @@ void				DynamicVector<T>::remove(const T& elem)
 		this->head = o->next;
 		tmp->next = nullptr;
 		delete tmp;
+		--this->size;
 	}
 	else
 		while (o->next != nullptr)
@@ -148,11 +157,53 @@ void				DynamicVector<T>::remove(const T& elem)
 				o->next = o->next->next;
 				tmp->next = nullptr;
 				delete tmp;
+				--this->size;
+				return;
 			}
 			else
 				o = o->next;
 		}
-	--this->size;
+}
+
+template <typename T>
+void				DynamicVector<T>::remove(const int& pos)
+{
+	int i = 1;
+	if (pos >= this->get_size())
+		throw invalid_argument("Position does not exist.");
+
+	Node<T>*	o;
+	o = this->head;
+	if (pos == 0)
+	{
+		Node<T>*	tmp;
+
+		tmp = this->head;
+		this->head = o->next;
+		tmp->next = nullptr;
+		delete tmp;
+		--this->size;
+	}
+	else
+		while (o->next != nullptr)
+		{
+			if (i == pos)
+			{
+				Node<T>*	tmp;
+
+				tmp = o->next;
+				o->next = o->next->next;
+				tmp->next = nullptr;
+				delete tmp;
+				--this->size;
+				return;
+			}
+			else
+			{
+				o = o->next;
+				++i;
+			}
+		}
 }
 
 template <typename T>

@@ -54,7 +54,6 @@ void						Repository::edit(const std::string& _title, const std::string& _descri
 	Activity	activity;
 	int			index;
 
-	//cout << " " << _title << " " << _description << " " << _type << " " << _duration << " " << "\n";
 	activity.set_title(_title);
 	index = this->list->index_of(activity);
 	if (_description != "")
@@ -76,15 +75,27 @@ void						Repository::init()
 {
 	Activity t("123", "123", "123", 123);
 	this->list->push(t);
-	t = Activity("234", "234", "234", 234);
-	this->list->push(t);
-	t = Activity("345", "345", "345", 345);
-	this->list->push(t);
-	t = Activity("456", "456", "456", 456);
+	t = Activity("678", "678", "678", 678);
 	this->list->push(t);
 	t = Activity("567", "567", "567", 567);
 	this->list->push(t);
-	t = Activity("678", "678", "678", 678);
+	t = Activity("456", "456", "456", 456);
+	this->list->push(t);
+	t = Activity("345", "345", "345", 345);
+	this->list->push(t);
+	t = Activity("234", "234", "234", 234);
+	this->list->push(t);
+	t = Activity("6789", "678", "123", 123);
+	this->list->push(t);
+	t = Activity("6788", "678", "123", 123);
+	this->list->push(t);
+	t = Activity("5678", "567", "234", 234);
+	this->list->push(t);
+	t = Activity("4568", "456", "234", 233);
+	this->list->push(t);
+	t = Activity("3458", "345", "234", 243);
+	this->list->push(t);
+	t = Activity("2348", "234", "234", 132);
 	this->list->push(t);
 }
 

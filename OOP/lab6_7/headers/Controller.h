@@ -15,6 +15,8 @@ public:
 	bool						isvalid_type(const std::string&) const;
 	bool						isvalid_description(const string&) const;
 	DynamicVector<Activity>*	get_list() const;
+	DynamicVector<Activity>*	get_list_filtered(const string&, const string&);
+	DynamicVector<Activity>*	get_list_sorted(const string&);
 	void						add(const std::string&, const std::string&, const std::string&, const int&);
 	void						remove(const std::string&);
 	bool						exists(const std::string&);

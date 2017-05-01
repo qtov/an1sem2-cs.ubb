@@ -23,7 +23,9 @@ public:
 	Iterator<T>		begin();
 	Iterator<T>		end();
 	void			display();
+	void			display_once();
 	void			remove(const T&);
+	void			remove(const int&);
 	T& 				operator[](int pos);
 	T&				at_index(int pos);
 	int				index_of(const T&);

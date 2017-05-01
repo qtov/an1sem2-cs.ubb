@@ -225,8 +225,7 @@ void	UI::display()
 	DynamicVector<Activity> *list;
 
 	list = this->controller->get_list();
-	list->display();
-	delete list;
+	list->display_once();
 }
 
 void	UI::search()
@@ -243,6 +242,121 @@ void	UI::search()
 	}
 	if (this->controller->exists(title))
 		cout << this->controller->get_elem(title);
+	else
+		cout << "The activity does not exist.\n";
+}
+
+void	UI::show_menu_filter() const
+{
+	cout << "0. Back.\n";
+	cout << "1. Filter by description.\n";
+	cout << "2. Filter by type.\n";
+}
+
+void	UI::filter()
+{
+	string					inputline;
+	int						input;
+	DynamicVector<Activity> *list;
+
+	input = -1;
+	while (input != 0)
+	{
+		this->show_menu_filter();
+		cout << "Input: ";
+		getline(cin, inputline);
+		if (this->controller->isvalid_number(inputline) && !inputline.empty())
+		{
+			input = stoi(inputline);
+			switch (input)
+			{
+				case 0: break;
+				case 1: 
+					try 
+					{
+						inputline = read_description(); 
+					}
+					catch (const invalid_argument& e)
+					{
+						return;
+					}
+					list = this->controller->get_list_filtered("description", inputline);
+					list->display_once();
+					break;
+				case 2: 
+					try 
+					{
+						inputline = read_type(); 
+					}
+					catch (const invalid_argument& e)
+					{
+						return;
+					}
+					list = this->controller->get_list_filtered("type", inputline);
+					list->display_once();
+					break;
+				default:
+					cout << "Invalid input.\n";
+					continue;
+			}
+			break;
+		}
+		else
+		{
+			cout << "Invalid input, retry...\n";
+		}
+	}
+}
+
+void	UI::show_menu_sort() const
+{
+	cout << "0. Back.\n";
+	cout << "1. Sort by title.\n";
+	cout << "2. Sort by description.\n";
+	cout << "3. Sort by type + duration.\n";
+}
+
+void	UI::sort()
+{
+	string					inputline;
+	int						input;
+	DynamicVector<Activity> *list;
+
+	input = -1;
+	while (input != 0)
+	{
+		this->show_menu_sort();
+		cout << "Input: ";
+		getline(cin, inputline);
+		if (this->controller->isvalid_number(inputline) && !inputline.empty())
+		{
+			input = stoi(inputline);
+			switch (input)
+			{
+				case 0: break;
+				case 1: 
+					list = this->controller->get_list_sorted("title");
+					list->display_once();
+					break;
+				case 2: 
+					list = this->controller->get_list_sorted("description");
+					list->display_once();
+					break;
+				case 3:
+					list = this->controller->get_list_sorted("type+duration");
+					list->display_once();
+					break;
+				default:
+					cout << "Invalid input.\n";
+					continue;
+			}
+			break;
+		}
+		else
+		{
+			cout << "Invalid input, retry...\n";
+		}
+	}
 }
 
 void	UI::start()
@@ -277,14 +391,13 @@ void	UI::start()
 					this->search();
 					break;
 				case 6 : 
-					
+					this->filter();
 					break;
 				case 7 : 
-					
+					this->sort();
 					break;
 				case 8 : 
-					
-					break;
+					return;
 				default : 
 					cout << "\n" << "Invalid input, retry.\n" << "\n";
 					break;

@@ -57,6 +57,106 @@ DynamicVector<Activity>*	Controller::get_list() const
 	return list;
 }
 
+DynamicVector<Activity>*	Controller::get_list_filtered(const string& filter_what, const string& input)
+{
+	DynamicVector<Activity>*	list;
+	int	i;
+
+	list = this->repository->get_list();
+	if (filter_what == "description")
+		for (i = 0; i < list->get_size(); ++i)
+		{
+			if ((*list)[i].get_description() != input)
+			{
+				list->remove(i);
+				--i;
+			}
+		}
+	else if (filter_what == "type")
+		for (i = 0; i < list->get_size(); ++i)
+		{
+			if ((*list)[i].get_type() != input)
+			{
+				list->remove(i);
+				--i;
+			}
+		}
+
+	return list;
+}
+
+DynamicVector<Activity>*	Controller::get_list_sorted(const string& sort_by)
+{
+	DynamicVector<Activity>*	list;
+	int							i;
+	bool						ok = false;
+	Activity					tmp;
+
+	list = this->repository->get_list();
+	if (sort_by == "title")
+	{
+		while (!ok)
+		{
+			ok = true;
+			for (i = 0; i < list->get_size() - 1; ++i)
+			{
+				if ((*list)[i].get_title() > (*list)[i + 1].get_title())
+				{
+					tmp = (*list)[i];
+					(*list)[i] = (*list)[i + 1];
+					(*list)[i + 1] = tmp;
+					ok = false;
+				}
+			}
+		}
+	}
+	else if (sort_by == "description")
+	{
+		while (!ok)
+		{
+			ok = true;
+			for (i = 0; i < list->get_size() - 1; ++i)
+			{
+				if ((*list)[i].get_description() > (*list)[i + 1].get_description())
+				{
+					tmp = (*list)[i];
+					(*list)[i] = (*list)[i + 1];
+					(*list)[i + 1] = tmp;
+					ok = false;
+				}
+			}
+		}
+	}
+	else if (sort_by == "type+duration")
+	{
+		while (!ok)
+		{
+			ok = true;
+			for (i = 0; i < list->get_size() - 1; ++i)
+			{
+				if ((*list)[i].get_type() > (*list)[i + 1].get_type())
+				{
+					tmp = (*list)[i];
+					(*list)[i] = (*list)[i + 1];
+					(*list)[i + 1] = tmp;
+					ok = false;
+				}
+				else if ((*list)[i].get_type() == (*list)[i + 1].get_type())
+				{
+					if ((*list)[i].get_duration() > (*list)[i + 1].get_duration())
+					{
+						tmp = (*list)[i];
+						(*list)[i] = (*list)[i + 1];
+						(*list)[i + 1] = tmp;
+						ok = false;
+					}
+				}
+			}
+		}
+	}
+	return list;
+}
+
 void						Controller::edit(std::string& _title, std::string& _description, std::string& _type, std::string& _duration)
 {
 	if (!this->validator->isvalid_title(_title))
