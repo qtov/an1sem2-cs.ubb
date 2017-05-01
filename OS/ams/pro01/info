@@ -1,0 +1,124 @@
+Orice comanda shell se poate 1) rula in linia de comanda sau 2) se
+poate scrie intr-un fisier de comenzi shell (script shell) urmand
+a fi rulata odata cu executia fisierului:
+
+1)
+$ comanda
+
+2)
+script contine:
+ - - -
+ comanda
+ - - -
+
+Lansari posibile:
+$ script    sau   $ ./script   sau   $ sh script
+
+Prin specificatia "comanda" sau "script" de mai sus includem:
+numele comenzii,
+argumentele ei: optiuni, fisiere, expresii si
+redirectarile I/O standard: < << > >> <& >&
+
+Daca o comanda trebuie reprezentata pe doua (sau mai multe) linii consecutive,
+toate liniile componente, cu exceptia ultimei, se incheie cu \<ENTER>
+(succesiunea de caractere '\\' '\n').
+
+O succesiune de doua comenzi se separa prin:
+; && || \n (linie noua) | (conectarea pipe a doua comenzi) & (executie in background).
+Mai multe comenzi pot fi grupate prin ( comenzi ) sau { comenzi }
+
+Un script shell este un fisier ASCII text care are drepturi de executie
+(artibuite, de exemplu, prin comanda: chmod 755 nume_fisier).
+Liniile lui pot contine comenzi Shell si / sau directive de dirijare
+a succesiunii comenzilor continute. I
+
+Comentariile se introduc in fisierele shell prin caracterul # (diez) si continua pe tot restul liniei.
+Este indicat (nu obligatoriu) ca scriptul shell sa inceapa cu un comentariu special
+
+#!/bin/sh  sau  #!/bin/bash  sau  #!/bin/ksh . . .
+
+Prin aceasta se indica sub controlul carui Shell se va interpreta scriptul
+
+
+Cateva elemente utile de stiut in programarea shell:
+
+Structuri de control shell (directive):
+if, case, for, while, until, true, false, break, continue
+
+Comenzi utile in context shell:
+shift, read, readonly, sleep, exit, echo, test (echivalent cu "[ ..]"),
+export, expr, basename, (apostroafele inverse)
+
+Comenzi de lucru cu fisiere (+directoare):
+ls, pwd, cat, find, locate, file, more, less, rm, mkdir, rmdir, cp,
+mv, cd, chmod, chown, ln, touch, du, cut, sort, uniq, cmp, diff, head,
+tail, wc, split
+
+Comenzi pentru aflarea de informatii despre useri:
+finger, w, who, ps, last, id, users
+
+Comenzi pentru informatii de retea:
+netstat, ping, hostname, host, ftp, ftpwho
+
+Alte comezi:
+clear, date, mail, uptime, df, fg, bg
+
+Semnificatia fiecarei comenzi de mai sus se va verifica cu
+comanda $ man [sectiune] nume
+
+EXEMPLU de script Shell:
+Prezentam un script shell care rezolva urmatoarea problema:
+
+Sa se construiasca un fisier de comenzi care primeste ca
+parametru un nume de director (sa-l numim D) si un numar intreg (sa-l numim N).
+Pentru fiecare fisier din directorul D sau din subdireacoarele acestuia,
+pentru care userul are drepturi de citire si de executie,
+sa se afiseze (maximum) primele N linii.
+
+Vom descrie solutia in scriptul (fisierul) shell1.sh, care contine:
+
+#!/bin/sh
+# verificam daca exista 2 parametrii in linia de comanda;
+# $# -> numarul parametrilor din linia de comanda
+if [ ! $# -eq 2 ]
+then echo usage: shell1.sh director numar
+     exit 1
+fi
+# verificam daca primul parametru este nume de director
+if [ ! -d $1 ]
+then echo $1 nu este director\!
+     exit 1
+fi
+D=$1 # Numai pentru a fi in ton cu enuntul. Putem folosi si $1
+N=$2 # Numai pentru a fi in ton cu enuntul. Putem folosi si $2
+
+# comanda 'find $D -perm -u=rx -type f' va afisa toate fisierele
+# din directorul $D si din subdirectoarele sale pentru care
+# user-ul (u) are drept de citire (r) si de executie (x).
+# Comanda se mai putea scrie si in felul urmator: find $D -perm
+# -500 -type f o alta alternativa pentru comanda find ar fi
+# comanda test cu optiunile -f,-r, -x apostroafele inverse care
+# inchid de-o pate si de alta comanda find, fac ca comanda din
+# interiorul lor (adica find in cazul nostru) sa fie inlocuita cu
+# iesirea ei standard (incercati sa rulati direct la linia de
+# comanda 'find D1 -perm -u=rx -type f' si veti vedea care este
+# iesirea standard a comenzii). astfel, in comanda for, la
+# fiecare iteratie variabila shell'fis' va lua ca valori, pe
+# rand, fiecare linie a iesirii standard a comenzii find
+# anterioare.
+
+for fis in `find $D -perm -u=rx -type f`; do
+        echo $fis           # afisam numele fisierului
+        head -$N $fis       # afisam primele $N linii din fisier
+done
+
+
+LANSAREA IN EXECUTIE:
+
+Dupa crearea fisieruli shell, trebuie sa i se acorde drepturi de executie:
+
+$ chmod 755 shell1.sh
+
+Lansarea in executie cu directorul parinte si primele 5 linii se face:
+
+$ ./shell1.sh .. 5
