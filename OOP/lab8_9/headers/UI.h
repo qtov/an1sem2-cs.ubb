@@ -24,6 +24,7 @@ private:
 	void		search();
 	void		filter();
 	void		sort();
+	void		shuffle();
 	string		read_title();
 	string		read_type();
 	int			read_duration();

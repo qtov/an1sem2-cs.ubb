@@ -6,7 +6,7 @@
 #include <vector>
 #include "Activity.h"
 #include <algorithm>
-#include "out_of_scope.h"
+#include "not_unique.h"
 #include "back_exception.h"
 
 class Repository

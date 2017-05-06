@@ -9,6 +9,7 @@ UI::UI(Controller* _controller)
 
 void	UI::show_menu() const
 {
+	cout << "0. Exit.\n";
 	cout << "1. Add activity.\n";
 	cout << "2. Delete activity.\n";
 	cout << "3. Edit activity.\n";
@@ -16,7 +17,7 @@ void	UI::show_menu() const
 	cout << "5. Search activity.\n";
 	cout << "6. Filter activities.\n";
 	cout << "7. Sort activities.\n";
-	cout << "8. Exit.\n";
+	cout << "8. Shuffle activities.\n";
 }
 
 string	UI::read_title()
@@ -383,13 +384,22 @@ void	UI::sort()
 	}
 }
 
+void	UI::shuffle()
+{
+	vector<Activity> *list = this->controller->get_list_shuffled();
+
+	for (const auto& elem : *list)
+		cout << elem;
+	delete list;
+}
+
 void	UI::start()
 {
-	int		input = 0;
+	int		input = -1;
 	string	inputline;
 
 	this->controller->init();
-	while (input != 8)
+	while (input != 0)
 	{
 		this->show_menu();
 		cout << "Input: ";
@@ -399,6 +409,8 @@ void	UI::start()
 			input = stoi(inputline);
 			switch (input)
 			{
+				case 0 :
+					return;
 				case 1 : 
 					this->add();
 					break;
@@ -421,7 +433,8 @@ void	UI::start()
 					this->sort();
 					break;
 				case 8 : 
-					return;
+					this->shuffle();
+					break;
 				default : 
 					cout << "\n" << "Invalid input, retry.\n" << "\n";
 					break;

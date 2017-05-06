@@ -49,7 +49,7 @@ bool						Controller::exists(const std::string& _title)
 	return this->repository->exists(_title);
 }
 
-std::vector<Activity>*	Controller::get_list() const
+std::vector<Activity>*		Controller::get_list() const
 {
 	std::vector<Activity>*	list;
 
@@ -57,7 +57,7 @@ std::vector<Activity>*	Controller::get_list() const
 	return list;
 }
 
-std::vector<Activity>*	Controller::get_list_filtered(const string& filter_what, const string& input)
+std::vector<Activity>*		Controller::get_list_filtered(const string& filter_what, const string& input)
 {
 	std::vector<Activity>*	list;
 	list = this->repository->get_list();
@@ -82,7 +82,7 @@ std::vector<Activity>*	Controller::get_list_filtered(const string& filter_what, 
 	return new_list;
 }
 
-std::vector<Activity>*	Controller::get_list_sorted(const string& sort_by)
+std::vector<Activity>*		Controller::get_list_sorted(const string& sort_by)
 {
 	std::vector<Activity> 	*list;
 
@@ -104,6 +104,16 @@ std::vector<Activity>*	Controller::get_list_sorted(const string& sort_by)
 					return true;
 			return false;
 		});
+	return list;
+}
+
+std::vector<Activity>*		Controller::get_list_shuffled() const
+{
+	std::vector<Activity> 	*list;
+
+	list = this->repository->get_list();
+	auto seed = std::chrono::system_clock::now().time_since_epoch().count();
+	std::shuffle(list->begin(), list->end(), std::default_random_engine(seed));
 	return list;
 }
 

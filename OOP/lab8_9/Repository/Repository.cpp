@@ -24,7 +24,7 @@ void						Repository::add(const std::string& _title, const std::string& _descrip
 	this->list->push_back(activity);
 }
 
-std::vector<Activity>*	Repository::get_list()
+std::vector<Activity>*		Repository::get_list()
 {
 	std::vector<Activity>	*new_list;
 	int						i;
