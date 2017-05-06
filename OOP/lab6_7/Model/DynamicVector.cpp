@@ -86,7 +86,9 @@ T&					DynamicVector<T>::operator[](int pos)
 	while (o != nullptr)
 	{
 		if (i == pos)
+		{
 			return o->data;
+		}
 		++i;
 		o = o->next;
 	}

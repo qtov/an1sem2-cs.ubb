@@ -10,3 +10,7 @@ clean:
 	@rm -f $(NAME)
 
 re: clean all
+
+cov:
+	g++ -o $(NAME) main.cpp $(SRC) --coverage -Iheaders/
+	
