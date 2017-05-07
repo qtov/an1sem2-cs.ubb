@@ -1,27 +1,24 @@
 #include "Builder.h"
 
-UI*			Builder::getUI() const
+UI*					Builder::getUI() const
 {
 	UI*	ui = new UI(getController());
-	// printf("%p -> Builder\n", ui);
 	return (ui);
 }
 
-Controller*	Builder::getController() const
+Controller*			Builder::getController() const
 {
-	Controller* controller = new Controller(getRepository(), getValidator());
-	// printf("%p, ", controller);
+	Controller* controller = new Controller(getFRepository(), getValidator());
 	return (controller);
 }
 
-Repository*	Builder::getRepository() const
+File_Repository*	Builder::getFRepository() const
 {
-	Repository* repo = new Repository();
-	// printf("%p, ", repo);
-	return (repo);
+	File_Repository* frepo = new File_Repository("./data/data");
+	return (frepo);
 }
 
-Validator*	Builder::getValidator() const
+Validator*			Builder::getValidator() const
 {
 	Validator* validator = new Validator();
 

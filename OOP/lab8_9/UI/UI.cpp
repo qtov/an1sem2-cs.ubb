@@ -398,7 +398,6 @@ void	UI::start()
 	int		input = -1;
 	string	inputline;
 
-	this->controller->init();
 	while (input != 0)
 	{
 		this->show_menu();

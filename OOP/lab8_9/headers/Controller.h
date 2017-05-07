@@ -2,6 +2,7 @@
 #define CONTROLLER_H
 
 #include "Repository.h"
+#include "File_Repository.h"
 #include "Validator.h"
 #include <random>
 #include <chrono>
@@ -9,9 +10,8 @@
 class Controller
 {
 public:
-	Controller(Repository*, Validator*);
+	Controller(File_Repository*, Validator*);
 	~Controller();
-	void						__debug_write();
 	bool						isvalid_number(const std::string&) const;
 	bool						isvalid_title(const std::string&) const;
 	bool						isvalid_type(const std::string&) const;
@@ -24,12 +24,11 @@ public:
 	void						remove(const std::string&);
 	bool						exists(const std::string&);
 	void						edit(std::string&, std::string&, std::string&, std::string&);
-	void						init();
 	Activity&					get_elem(const std::string&);
 
 private:
-	Repository* repository;
-	Validator*	validator;
+	Validator*			validator;
+	File_Repository*	frepo;
 };
 
 #endif

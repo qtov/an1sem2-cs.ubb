@@ -1,5 +1,5 @@
 NAME=t
-SRC=Builder.cpp Validator.cpp Controller/Controller.cpp Model/Activity.cpp Repository/Repository.cpp UI/UI.cpp
+SRC=Builder.cpp Validator.cpp Controller/Controller.cpp Model/Activity.cpp Repository/Repository.cpp UI/UI.cpp Repository/File_Repository.cpp
 
 all: $(NAME)
 

@@ -8,11 +8,6 @@ Repository::Repository()
 	this->list = new std::vector<Activity>();
 }
 
-void						Repository::__debug_write()
-{
-	cout << "Repository\n";
-}
-
 void						Repository::add(const std::string& _title, const std::string& _description, const std::string& _type, const int& _duration)
 {
 	Activity					activity(_title, _description, _type, _duration);
@@ -30,7 +25,7 @@ std::vector<Activity>*		Repository::get_list()
 	int						i;
 
 	new_list = new std::vector<Activity>;
-	for (const auto& elem : *this->list)
+	for (const Activity& elem : *this->list)
 		new_list->push_back(elem);
 	return (new_list);
 }
@@ -77,34 +72,6 @@ void						Repository::edit(const std::string& _title, const std::string& _descri
 	else
 		activity.set_duration((*this->list)[index].get_duration());
 	(*this->list)[index] = activity;
-}
-
-void						Repository::init()
-{
-	Activity t("123", "123", "123", 123);
-	this->list->push_back(t);
-	t = Activity("678", "678", "678", 678);
-	this->list->push_back(t);
-	t = Activity("567", "567", "567", 567);
-	this->list->push_back(t);
-	t = Activity("456", "456", "456", 456);
-	this->list->push_back(t);
-	t = Activity("345", "345", "345", 345);
-	this->list->push_back(t);
-	t = Activity("234", "234", "234", 234);
-	this->list->push_back(t);
-	t = Activity("6789", "678", "123", 123);
-	this->list->push_back(t);
-	t = Activity("6788", "678", "123", 123);
-	this->list->push_back(t);
-	t = Activity("5678", "567", "234", 234);
-	this->list->push_back(t);
-	t = Activity("4568", "456", "234", 233);
-	this->list->push_back(t);
-	t = Activity("3458", "345", "234", 243);
-	this->list->push_back(t);
-	t = Activity("2348", "234", "234", 132);
-	this->list->push_back(t);
 }
 
 Activity&					Repository::get_elem(const std::string& _title)
