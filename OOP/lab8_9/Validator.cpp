@@ -20,6 +20,15 @@ bool	Validator::isvalid_title(const string& s)
 	return (1);
 }
 
+bool	Validator::isvalid_filename(const string& s)
+{
+	int	len = s.length();
+
+	if (len < 1 || len > 30)
+		return (0);
+	return (1);
+}
+
 bool	Validator::isvalid_description(const string& s)
 {
 	int	len = s.length();

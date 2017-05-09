@@ -1,0 +1,2 @@
+scrieti 2 prog in c care comunica prin fifo, prog a primeste ca argument din linia de comanda perechi de numere, transmite pe rand la b o pereche de numere, programul b care i ^ (i+1)
+

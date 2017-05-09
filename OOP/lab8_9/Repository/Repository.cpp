@@ -83,7 +83,18 @@ Activity&					Repository::get_elem(const std::string& _title)
 	return (*this->list)[index];
 }
 
+void						Repository::delete_list()
+{
+	this->list->clear();
+}
+
+void						Repository::update_list(std::vector<Activity>* new_list)
+{
+	this->list = new_list;
+}
+
 Repository::~Repository()
 {
+	this->list->clear();
 	delete this->list;
 }

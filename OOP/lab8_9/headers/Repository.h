@@ -8,6 +8,7 @@
 #include <algorithm>
 #include "not_unique.h"
 #include "back_exception.h"
+#include "Undo_Action.h"
 
 class Repository
 {
@@ -21,6 +22,8 @@ public:
 	bool						exists(const std::string&);
 	void						edit(const std::string&, const std::string&, const std::string&, const std::string&);
 	Activity&					get_elem(const std::string&);
+	void						delete_list();
+	void						update_list(std::vector<Activity>* new_list);
 	~Repository();
 };
 

@@ -4,8 +4,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#define NUM_TH 4
-#define MX_L 1000
+#define NUM_TH 8
+#define MX_L 2000
 
 int		a[MX_L][MX_L], b[MX_L][MX_L], c[MX_L][MX_L];
 

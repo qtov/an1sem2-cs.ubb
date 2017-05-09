@@ -2,6 +2,7 @@
 #define CONTROLLER_H
 
 #include "Repository.h"
+#include "Undo_Action.h"
 #include "File_Repository.h"
 #include "Validator.h"
 #include <random>
@@ -15,6 +16,7 @@ public:
 	bool						isvalid_number(const std::string&) const;
 	bool						isvalid_title(const std::string&) const;
 	bool						isvalid_type(const std::string&) const;
+	bool						isvalid_filename(const std::string&) const;
 	bool						isvalid_description(const string&) const;
 	std::vector<Activity>*		get_list() const;
 	std::vector<Activity>*		get_list_shuffled() const;
@@ -25,10 +27,15 @@ public:
 	bool						exists(const std::string&);
 	void						edit(std::string&, std::string&, std::string&, std::string&);
 	Activity&					get_elem(const std::string&);
+	void						delete_list();
+	void						undo();
+	void						save_another(const std::string&);
+	void						add_to_undo(const std::string&);
 
 private:
-	Validator*			validator;
-	File_Repository*	frepo;
+	Validator*					validator;
+	File_Repository*			frepo;
+	vector<Undo_Action*>		undo_list;
 };
 
 #endif

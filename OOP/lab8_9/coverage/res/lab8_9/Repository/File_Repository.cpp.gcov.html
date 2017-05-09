@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - ex_test.info - lab8_9/Repository/File_Repository.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">lab8_9/Repository</a> - File_Repository.cpp<span style="font-size: 80%;"> (source / <a href="File_Repository.cpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">ex_test.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">15</td>
+            <td class="headerCovTableEntry">41</td>
+            <td class="headerCovTableEntryLo">36.6 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-05-09 13:49:12</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntry">5</td>
+            <td class="headerCovTableEntryLo">60.0 %</td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : #include &quot;File_Repository.h&quot;</a>
+<span class="lineNum">       2 </span>            : 
+<span class="lineNum">       3 </span><span class="lineCov">          1 : void    File_Repository::pull_from_file()</span>
+<span class="lineNum">       4 </span>            : {
+<span class="lineNum">       5 </span><span class="lineCov">          2 :         std::ifstream   in(this-&gt;file_name);</span>
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span><span class="lineCov">          1 :         if (!in.is_open())</span>
+<span class="lineNum">       8 </span><span class="lineNoCov">          0 :                 throw invalid_argument(&quot;File could not be opened.&quot;);</span>
+<span class="lineNum">       9 </span><span class="lineCov">         27 :         while (!in.eof())</span>
+<span class="lineNum">      10 </span>            :         {
+<span class="lineNum">      11 </span><span class="lineCov">         27 :                 std::string     title;</span>
+<span class="lineNum">      12 </span><span class="lineCov">         27 :                 std::string     description;</span>
+<span class="lineNum">      13 </span><span class="lineCov">         27 :                 std::string     type;</span>
+<span class="lineNum">      14 </span>            :                 int                     duration;
+<span class="lineNum">      15 </span>            : 
+<span class="lineNum">      16 </span><span class="lineCov">         14 :                 in &gt;&gt; title;</span>
+<span class="lineNum">      17 </span><span class="lineCov">         14 :                 if (in.eof())</span>
+<span class="lineNum">      18 </span><span class="lineCov">          1 :                         break;</span>
+<span class="lineNum">      19 </span><span class="lineCov">         13 :                 in &gt;&gt; description &gt;&gt; type &gt;&gt; duration;</span>
+<span class="lineNum">      20 </span><span class="lineCov">         13 :                 Repository::add(title, description, type, duration);</span>
+<span class="lineNum">      21 </span>            :         }
+<span class="lineNum">      22 </span><span class="lineCov">          1 :         in.close();</span>
+<a name="23"><span class="lineNum">      23 </span><span class="lineCov">          1 : }</span></a>
+<span class="lineNum">      24 </span>            : 
+<span class="lineNum">      25 </span><span class="lineNoCov">          0 : void    File_Repository::push_to_file()</span>
+<span class="lineNum">      26 </span>            : {
+<span class="lineNum">      27 </span><span class="lineNoCov">          0 :         std::ofstream   out(this-&gt;file_name);</span>
+<span class="lineNum">      28 </span>            :         vector&lt;Activity&gt;* list;
+<span class="lineNum">      29 </span>            : 
+<span class="lineNum">      30 </span><span class="lineNoCov">          0 :         if (!out.is_open())</span>
+<span class="lineNum">      31 </span><span class="lineNoCov">          0 :                 throw invalid_argument(&quot;File could not be opened.&quot;);</span>
+<span class="lineNum">      32 </span><span class="lineNoCov">          0 :         list = Repository::get_list();</span>
+<span class="lineNum">      33 </span><span class="lineNoCov">          0 :         for (const auto&amp; elem : *list)</span>
+<span class="lineNum">      34 </span>            :         {
+<span class="lineNum">      35 </span><span class="lineNoCov">          0 :                 out &lt;&lt; elem.get_title() &lt;&lt; std::endl;</span>
+<span class="lineNum">      36 </span><span class="lineNoCov">          0 :                 out &lt;&lt; elem.get_description() &lt;&lt; std::endl;</span>
+<span class="lineNum">      37 </span><span class="lineNoCov">          0 :                 out &lt;&lt; elem.get_type() &lt;&lt; std::endl;</span>
+<span class="lineNum">      38 </span><span class="lineNoCov">          0 :                 out &lt;&lt; elem.get_duration() &lt;&lt; std::endl;</span>
+<span class="lineNum">      39 </span>            :         }
+<span class="lineNum">      40 </span><span class="lineNoCov">          0 :         delete list;</span>
+<span class="lineNum">      41 </span><span class="lineNoCov">          0 :         out.close();</span>
+<a name="42"><span class="lineNum">      42 </span><span class="lineNoCov">          0 : }</span></a>
+<span class="lineNum">      43 </span>            : 
+<span class="lineNum">      44 </span><span class="lineNoCov">          0 : void    File_Repository::push_to_specific_file(const std::string&amp; name)</span>
+<span class="lineNum">      45 </span>            : {
+<span class="lineNum">      46 </span><span class="lineNoCov">          0 :         std::ofstream   out(&quot;./data/&quot; + name + &quot;.csv&quot;);</span>
+<span class="lineNum">      47 </span>            :         vector&lt;Activity&gt;* list;
+<span class="lineNum">      48 </span>            : 
+<span class="lineNum">      49 </span><span class="lineNoCov">          0 :         if (!out.is_open())</span>
+<span class="lineNum">      50 </span><span class="lineNoCov">          0 :                 throw invalid_argument(&quot;File could not be opened.&quot;);</span>
+<span class="lineNum">      51 </span><span class="lineNoCov">          0 :         list = Repository::get_list();</span>
+<span class="lineNum">      52 </span><span class="lineNoCov">          0 :         for (const auto&amp; elem : *list)</span>
+<span class="lineNum">      53 </span>            :         {
+<span class="lineNum">      54 </span><span class="lineNoCov">          0 :                 out &lt;&lt; elem.get_title() &lt;&lt; std::endl;</span>
+<span class="lineNum">      55 </span><span class="lineNoCov">          0 :                 out &lt;&lt; elem.get_description() &lt;&lt; std::endl;</span>
+<span class="lineNum">      56 </span><span class="lineNoCov">          0 :                 out &lt;&lt; elem.get_type() &lt;&lt; std::endl;</span>
+<span class="lineNum">      57 </span><span class="lineNoCov">          0 :                 out &lt;&lt; elem.get_duration() &lt;&lt; std::endl;</span>
+<span class="lineNum">      58 </span>            :         }
+<a name="59"><span class="lineNum">      59 </span><span class="lineNoCov">          0 :         delete list;</span></a>
+<span class="lineNum">      60 </span><span class="lineNoCov">          0 :         out.close();</span>
+<span class="lineNum">      61 </span><span class="lineCov">          3 : }</span>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

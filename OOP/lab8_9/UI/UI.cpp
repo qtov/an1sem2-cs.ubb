@@ -18,6 +18,9 @@ void	UI::show_menu() const
 	cout << "6. Filter activities.\n";
 	cout << "7. Sort activities.\n";
 	cout << "8. Shuffle activities.\n";
+	cout << "9. Undo.\n";
+	cout << "10. Delete all activities.\n";
+	cout << "11. Save in another file.\n";
 }
 
 string	UI::read_title()
@@ -393,6 +396,28 @@ void	UI::shuffle()
 	delete list;
 }
 
+void	UI::delete_list()
+{
+	this->controller->delete_list();
+}
+
+void	UI::save_another()
+{
+	string name;
+
+	cout << "Enter file name: ";
+	getline(cin, name);
+	if (this->controller->isvalid_filename(name))
+		this->controller->save_another(name);
+	else
+		cout << "Wrong file name.\n";
+}
+
+void	UI::undo()
+{
+	this->controller->undo();
+}
+
 void	UI::start()
 {
 	int		input = -1;
@@ -433,6 +458,15 @@ void	UI::start()
 					break;
 				case 8 : 
 					this->shuffle();
+					break;
+				case 9 :
+					this->undo();
+					break;
+				case 10 :
+					this->delete_list();
+					break;
+				case 11 :
+					this->save_another();
 					break;
 				default : 
 					cout << "\n" << "Invalid input, retry.\n" << "\n";

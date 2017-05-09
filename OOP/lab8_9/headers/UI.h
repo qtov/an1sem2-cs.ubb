@@ -23,6 +23,9 @@ private:
 	void		edit();
 	void		search();
 	void		filter();
+	void		delete_list();
+	void		undo();
+	void		save_another();
 	void		sort();
 	void		shuffle();
 	string		read_title();

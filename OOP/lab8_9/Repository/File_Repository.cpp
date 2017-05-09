@@ -40,3 +40,22 @@ void	File_Repository::push_to_file()
 	delete list;
 	out.close();
 }
+
+void	File_Repository::push_to_specific_file(const std::string& name)
+{
+	std::ofstream 	out("./data/" + name + ".csv");
+	vector<Activity>* list;
+
+	if (!out.is_open())
+		throw invalid_argument("File could not be opened.");
+	list = Repository::get_list();
+	for (const auto& elem : *list)
+	{
+		out << elem.get_title() << std::endl;
+		out << elem.get_description() << std::endl;
+		out << elem.get_type() << std::endl;
+		out << elem.get_duration() << std::endl;
+	}
+	delete list;
+	out.close();
+}

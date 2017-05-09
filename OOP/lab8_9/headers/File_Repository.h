@@ -33,6 +33,20 @@ public:
 		Repository::edit(_title, _description, _type, _duration);
 		push_to_file();
 	}
+
+	void	delete_list()
+	{
+		Repository::delete_list();
+		push_to_file();
+	}
+
+	void	update_list(std::vector<Activity>* new_list)
+	{
+		Repository::update_list(new_list);
+		push_to_file();
+	}
+
+	void		push_to_specific_file(const std::string&);
 };
 
 #endif
