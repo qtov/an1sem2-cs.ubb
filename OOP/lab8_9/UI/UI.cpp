@@ -229,6 +229,7 @@ void	UI::display()
 	std::vector<Activity> *list;
 
 	list = this->controller->get_list();
+	cout << "------------------------------------------\n";
 	for (const auto& elem : *list)
 	{
 		cout << elem;

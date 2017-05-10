@@ -11,13 +11,15 @@ void	File_Repository::pull_from_file()
 		std::string	title;
 		std::string	description;
 		std::string	type;
-		int			duration;
+		std::string	duration;
 
-		in >> title;
+		std::getline(in, title);
 		if (in.eof())
 			break;
-		in >> description >> type >> duration;
-		Repository::add(title, description, type, duration);
+		std::getline(in, description);
+		std::getline(in, type);
+		std::getline(in, duration);
+		Repository::add(title, description, type, stoi(duration));
 	}
 	in.close();
 }
