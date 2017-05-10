@@ -36,12 +36,14 @@ bool						Controller::isvalid_filename(const string& s) const
 void						Controller::add_to_undo(const std::string& add_what)
 {
 	vector<Activity>*	list;
-	Undo_Action*		undo_action = nullptr;
 
 	list = this->frepo->get_list();
-	undo_action = new Undo_Action(list);
-
-	this->undo_list.insert(undo_list.begin(), undo_action);
+	if (add_what == "add")
+		this->undo_list.insert(undo_list.begin(), new Undo_Add(list, this->frepo));
+	else if (add_what == "edit")
+		this->undo_list.insert(undo_list.begin(), new Undo_Edit(list, this->frepo));
+	else if (add_what == "delete")
+		this->undo_list.insert(undo_list.begin(), new Undo_Delete(list, this->frepo));
 }
 
 void						Controller::add(const std::string& _title, const std::string& _description, const std::string& _type, const int& _duration)
@@ -52,8 +54,15 @@ void						Controller::add(const std::string& _title, const std::string& _descrip
 
 void						Controller::remove(const std::string& _title)
 {
-	this->add_to_undo("remove");
- 	this->frepo->remove(_title);
+	if (this->exists(_title))
+	{
+		this->add_to_undo("delete");
+		this->frepo->remove(_title);
+	}
+	else
+	{
+		throw invalid_argument("Item does not exist.");
+	}
 }
 
 bool						Controller::exists(const std::string& _title)
@@ -143,7 +152,7 @@ void						Controller::edit(std::string& _title, std::string& _description, std::
 
 void						Controller::delete_list()
 {
-	this->add_to_undo("delete_list");
+	this->add_to_undo("delete");
 	this->frepo->delete_list();
 }
 
@@ -151,10 +160,7 @@ void						Controller::undo()
 {
 	if (!this->undo_list.empty())
 	{
-		this->frepo->delete_list();
-		for (auto elem : *this->undo_list[0]->get_list())
-			this->frepo->add(elem.get_title(), elem.get_description(), elem.get_type(), elem.get_duration());
-
+		this->undo_list[0]->do_undo();
 		delete this->undo_list[0];
 		this->undo_list.erase(this->undo_list.begin());
 	}
@@ -174,6 +180,6 @@ Controller::~Controller()
 {
 	delete this->validator;
 	delete this->frepo;
-	for (Undo_Action* mini_list : this->undo_list)
+	for (auto* mini_list : this->undo_list)
 		delete mini_list;
 }

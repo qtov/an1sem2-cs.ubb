@@ -3,6 +3,9 @@
 
 #include "Repository.h"
 #include "Undo_Action.h"
+#include "Undo_Add.h"
+#include "Undo_Edit.h"
+#include "Undo_Delete.h"
 #include "File_Repository.h"
 #include "Validator.h"
 #include <random>

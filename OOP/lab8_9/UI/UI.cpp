@@ -184,7 +184,7 @@ void	UI::remove()
 	{
  		this->controller->remove(title);
 	}
-	catch (const back_exception& e)
+	catch (const invalid_argument& e)
 	{
 		cout << "\n" << e.what() << "\n\n";
 	}
