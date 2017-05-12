@@ -21,7 +21,11 @@ public:
 	void	set_duration(const int&);
 	friend ostream&	operator<<(ostream& stream, const Activity& activity)
 	{	
-		cout << activity.get_title() << " " << activity.get_description() << " " << activity.get_type() << " " << activity.get_duration() << "\n";
+		cout << "Title: " << activity.get_title() << "\n";
+		cout << "Description: " << activity.get_description() << "\n";
+		cout << "Type: " << activity.get_type() << "\n";
+		cout << "Duration: " << activity.get_duration() << "\n";
+		cout << "------------------------------------------\n";
 		return stream;
 	}
 	Activity&	operator=(const Activity& v);

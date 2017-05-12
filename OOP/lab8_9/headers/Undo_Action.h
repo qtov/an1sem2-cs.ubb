@@ -5,25 +5,10 @@
 
 class Undo_Action
 {
-private:
-	std::vector<Activity>* undo_list;
-
 public:
-	Undo_Action(std::vector<Activity>* list)
-	{
-		this->undo_list = list;
-	}
-	~Undo_Action()
-	{
-		delete this->undo_list;
-	}
+	virtual ~Undo_Action() {};
 
-	std::vector<Activity>* get_list()
-	{
-		return this->undo_list;
-	}
-
-	virtual void	do_undo() { };
+	virtual void	do_undo() = 0;
 };
 
 #endif

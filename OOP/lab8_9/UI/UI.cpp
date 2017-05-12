@@ -184,7 +184,7 @@ void	UI::remove()
 	{
  		this->controller->remove(title);
 	}
-	catch (const back_exception& e)
+	catch (const invalid_argument& e)
 	{
 		cout << "\n" << e.what() << "\n\n";
 	}
@@ -229,6 +229,7 @@ void	UI::display()
 	std::vector<Activity> *list;
 
 	list = this->controller->get_list();
+	cout << "------------------------------------------\n";
 	for (const auto& elem : *list)
 	{
 		cout << elem;
