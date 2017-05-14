@@ -10,4 +10,4 @@ cd coverage
 lcov -t "result" -o ex_test.info -c -d .
 genhtml -o res ex_test.info
 cd res
-firefox index.html
+chromium index.html

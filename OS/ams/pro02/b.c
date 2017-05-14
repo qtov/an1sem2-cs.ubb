@@ -1,33 +1,32 @@
-#include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 
-int	main()
+int main()
 {
-	int f, g;
-
 	srand(getpid());
-
-	g = open("./a2b", O_RDONLY);
-	//f = open("./b2a", O_WRONLY);
-
-	printf("here\n");
-
+	mkfifo("./b2a", 0666);
+	
+	int f, g;
 	int num;
-	int to_take;
 
-	//do
-	//{
-		read(g, &num, sizeof(int));
-		to_take = rand() % 950 + 50;
-		num -= to_take;
-		printf("%d\n", num);
-		//write(f, &num, sizeof(int));
-	//} while (num > 0);
+	f = open("./a2b", O_RDONLY);
+	g = open("./b2a", O_WRONLY);
 
-	//close(f);
-	close(g);
+	do
+	{
+		read(f, &num, sizeof(int));
+		printf("from: %d\n", num);
+		if (num < 0) break;
+		num -= rand() % 950 + 50;
+		printf("to: %d\n", num);
+		write(g, &num, sizeof(int));
+	} while (num > 0);
+
+	unlink("./b2a");
 
 	return (0);
 }
