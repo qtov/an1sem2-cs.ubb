@@ -203,6 +203,7 @@ DIST          = /home/rexu/.Qt/5.8/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/rexu/.Qt/5.8/gcc_64/mkspecs/features/qt_config.prf \
 		/home/rexu/.Qt/5.8/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/rexu/.Qt/5.8/gcc_64/mkspecs/features/spec_post.prf \
+		../lab10/.qmake.stash \
 		/home/rexu/.Qt/5.8/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/rexu/.Qt/5.8/gcc_64/mkspecs/features/toolchain.prf \
 		/home/rexu/.Qt/5.8/gcc_64/mkspecs/features/default_pre.prf \
@@ -385,6 +386,7 @@ Makefile: ../lab10/lab10.pro /home/rexu/.Qt/5.8/gcc_64/mkspecs/linux-g++/qmake.c
 		/home/rexu/.Qt/5.8/gcc_64/mkspecs/features/qt_config.prf \
 		/home/rexu/.Qt/5.8/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/rexu/.Qt/5.8/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/home/rexu/.Qt/5.8/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/rexu/.Qt/5.8/gcc_64/mkspecs/features/toolchain.prf \
 		/home/rexu/.Qt/5.8/gcc_64/mkspecs/features/default_pre.prf \
@@ -559,6 +561,7 @@ Makefile: ../lab10/lab10.pro /home/rexu/.Qt/5.8/gcc_64/mkspecs/linux-g++/qmake.c
 /home/rexu/.Qt/5.8/gcc_64/mkspecs/features/qt_config.prf:
 /home/rexu/.Qt/5.8/gcc_64/mkspecs/linux-g++/qmake.conf:
 /home/rexu/.Qt/5.8/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /home/rexu/.Qt/5.8/gcc_64/mkspecs/features/exclusive_builds.prf:
 /home/rexu/.Qt/5.8/gcc_64/mkspecs/features/toolchain.prf:
 /home/rexu/.Qt/5.8/gcc_64/mkspecs/features/default_pre.prf:
@@ -981,7 +984,61 @@ mainwindow.o: ../lab10/mainwindow.cpp ../lab10/mainwindow.h \
 		/home/rexu/.Qt/5.8/gcc_64/include/QtGui/qtouchdevice.h \
 		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/qtabwidget.h \
 		/home/rexu/.Qt/5.8/gcc_64/include/QtGui/qicon.h \
-		ui_mainwindow.h
+		ui_mainwindow.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtCore/QVariant \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/QAction \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/qaction.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/qactiongroup.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/QApplication \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/qapplication.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtCore/qeventloop.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtGui/qguiapplication.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtGui/qinputmethod.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/QButtonGroup \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/qbuttongroup.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/QGroupBox \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/qgroupbox.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/qframe.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/QHeaderView \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/qheaderview.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/qabstractitemview.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtCore/qabstractitemmodel.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtCore/qitemselectionmodel.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/qstyleoption.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtGui/qvalidator.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtCore/qregularexpression.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/qslider.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/qabstractslider.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/qstyle.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/qtabbar.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/qrubberband.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/QLabel \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/qlabel.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/QLineEdit \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/qlineedit.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtGui/qtextcursor.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtGui/qtextformat.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtGui/qpen.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtGui/qtextoption.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/QMenuBar \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/qmenubar.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/qmenu.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/QPushButton \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/qpushbutton.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/QStatusBar \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/qstatusbar.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/QTextEdit \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/qtextedit.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtGui/qtextdocument.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/QToolBar \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/qtoolbar.h \
+		/home/rexu/.Qt/5.8/gcc_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../lab10/mainwindow.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
