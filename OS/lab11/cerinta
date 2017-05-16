@@ -1,0 +1,3 @@
+sa se scrie un prog care primeste din linia de comanda un fis, care pe fiecare linie contine un utilizator
+Prog trebuie sa lanseze un thread pt fiecare linie citita din fisier, si det daca util este logat in
+sistem, daca da, imi afis cate procese ruleaza, daca nu, afiseaza un mesaj.

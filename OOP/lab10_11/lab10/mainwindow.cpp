@@ -1,26 +1,24 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QLayout>
+#include <QLineEdit>
 #include <QPushButton>
+#include <QGridLayout>
+#include <QWidget>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    QWidget *wnd = new QWidget;
-    QHBoxLayout *hLay = new QHBoxLayout();
-    //QVBoxLayout *hLay = new QVBoxLayout();
-    QPushButton *btn1 = new QPushButton("Btkjashdakjdakjskjsasd &1");
-    QPushButton *btn2 = new QPushButton("Bt &2");
-    QPushButton *btn3 = new QPushButton("Bt &3");
-    hLay->addWidget(btn1);
-    //hLay->addStretch();
-    hLay->addWidget(btn2);
-    //hLay->addStretch();
-    hLay->addWidget(btn3);
-    wnd->setLayout(hLay);
-    wnd->show();
+
+    QPushButton btn1("test", this);
+    QWidget p;
+    QPushButton btn2("other", &btn1);
+
+    p.setWindowTitle("fuck this shit really");
+    p.show();
+    btn1.show();
 }
 
 MainWindow::~MainWindow()
