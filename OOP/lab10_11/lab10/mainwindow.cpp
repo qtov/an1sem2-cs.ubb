@@ -11,14 +11,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-    QPushButton btn1("test", this);
-    QWidget p;
-    QPushButton btn2("other", &btn1);
-
-    p.setWindowTitle("fuck this shit really");
-    p.show();
-    btn1.show();
 }
 
 MainWindow::~MainWindow()

@@ -6,13 +6,11 @@ using namespace std;
 
 int	main()
 {
-	{
-		Builder	builder;
-		UI*		ui = builder.getUI();
+	Builder	builder;
+	UI*		ui = builder.getUI();
 
-		ui->start();
-		delete ui;
-	}
+	ui->start();
+	delete ui;
 
 	return (0);
 }
