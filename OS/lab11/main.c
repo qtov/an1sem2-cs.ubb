@@ -40,7 +40,14 @@ int main(int argc, char** argv)
 	FILE* f;
 	char line[100];
 	int n = 0;
-	int i;
+	int i = 0;
+	pthread_attr_t attr;
+
+	pthread_attr_init(&attr);
+	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
+
+	if (argc != 2)
+		return (-1);
 
 	f = fopen(argv[1], "r");
 
@@ -48,7 +55,7 @@ int main(int argc, char** argv)
 		++n;
 		
 	rewind(f);
-	pthread_t t[10];
+	pthread_t t[n];
 
 	while (fgets(line, 100, f))
 	{
@@ -58,11 +65,12 @@ int main(int argc, char** argv)
 		strcpy(user, line);
 		user[strlen(user) - 1] = '\0';
 		
-		pthread_create(&t[i], NULL, thread_do, user);
+		pthread_create(&t[i], &attr, thread_do, user);
 		++i;
 	}
 
 	rewind(f);
+	pthread_attr_destroy(&attr);
 
 	for (i = 0; i < n; i++)
 	{
