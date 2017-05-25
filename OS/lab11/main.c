@@ -77,7 +77,6 @@ int main(int argc, char** argv)
 		pthread_join(t[i], NULL);
 	}
 
-
 	fclose(f);
 
 	return (0);

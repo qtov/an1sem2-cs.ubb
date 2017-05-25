@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <pthread.h>
 #include <stdlib.h>
-#include <stdlib.h>
 #include <unistd.h>
 
 #define NUM_TH 8
