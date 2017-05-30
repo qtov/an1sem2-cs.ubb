@@ -86,3 +86,15 @@ Activity&	Activity::operator=(const Activity& v)
 	this->duration = v.get_duration();
 	return *this;
 }
+
+string		Activity::printable_form()
+{
+	string str = "";
+
+	str += this->get_title();
+	str +=  " ";
+	str += this->get_description();
+	str += this->get_type();
+	str += this->get_duration();
+	return str;
+}

@@ -55,7 +55,8 @@ SOURCES       = Builder.cpp \
 		Model/Activity.cpp \
 		Repository/File_Repository.cpp \
 		Repository/Repository.cpp \
-		UI/UI.cpp 
+		UI/UI.cpp \
+		UI/GUI.cpp moc_GUI.cpp
 OBJECTS       = Builder.o \
 		main.o \
 		Validator.o \
@@ -63,7 +64,9 @@ OBJECTS       = Builder.o \
 		Activity.o \
 		File_Repository.o \
 		Repository.o \
-		UI.o
+		UI.o \
+		GUI.o \
+		moc_GUI.o
 DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/common/unix.conf \
 		/usr/lib/qt/mkspecs/common/linux.conf \
@@ -261,7 +264,8 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		Model/Activity.cpp \
 		Repository/File_Repository.cpp \
 		Repository/Repository.cpp \
-		UI/UI.cpp
+		UI/UI.cpp \
+		UI/GUI.cpp
 QMAKE_TARGET  = lab11
 DESTDIR       = 
 TARGET        = lab11
@@ -650,7 +654,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents headers/Activity.h headers/back_exception.h headers/Builder.h headers/Controller.h headers/debug.h headers/File_Repository.h headers/GUI.h headers/not_unique.h headers/Repository.h headers/UI.h headers/Undo_Action.h headers/Undo_Add.h headers/Undo_Delete.h headers/Undo_Edit.h headers/Validator.h $(DISTDIR)/
-	$(COPY_FILE) --parents Builder.cpp main.cpp Validator.cpp Controller/Controller.cpp Model/Activity.cpp Repository/File_Repository.cpp Repository/Repository.cpp UI/UI.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents Builder.cpp main.cpp Validator.cpp Controller/Controller.cpp Model/Activity.cpp Repository/File_Repository.cpp Repository/Repository.cpp UI/UI.cpp UI/GUI.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -682,8 +686,26 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/qt/mkspecs/features/data/dummy.cpp
 	g++ -pipe -O2 -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -Wall -W -dM -E -o moc_predefs.h /usr/lib/qt/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all:
+compiler_moc_header_make_all: moc_GUI.cpp
 compiler_moc_header_clean:
+	-$(DEL_FILE) moc_GUI.cpp
+moc_GUI.cpp: headers/Controller.h \
+		headers/Repository.h \
+		headers/debug.h \
+		headers/Activity.h \
+		headers/not_unique.h \
+		headers/back_exception.h \
+		headers/Undo_Action.h \
+		headers/Undo_Add.h \
+		headers/File_Repository.h \
+		headers/Undo_Edit.h \
+		headers/Undo_Delete.h \
+		headers/Validator.h \
+		headers/GUI.h \
+		moc_predefs.h \
+		/usr/bin/moc
+	/usr/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/rexu/Coding/University/sem_2/OOP/lab11 -I/home/rexu/Coding/University/sem_2/OOP/lab11 -I/home/rexu/Coding/University/sem_2/OOP/lab11/headers -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/include/c++/6.3.1 -I/usr/include/c++/6.3.1/x86_64-pc-linux-gnu -I/usr/include/c++/6.3.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.3.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.3.1/include-fixed -I/usr/include headers/GUI.h -o moc_GUI.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
 compiler_uic_make_all:
@@ -694,7 +716,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean 
+compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean 
 
 ####### Compile
 
@@ -711,7 +733,8 @@ Builder.o: Builder.cpp headers/Builder.h \
 		headers/Undo_Edit.h \
 		headers/Undo_Delete.h \
 		headers/Validator.h \
-		headers/UI.h
+		headers/UI.h \
+		headers/GUI.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Builder.o Builder.cpp
 
 main.o: main.cpp headers/Builder.h \
@@ -727,7 +750,8 @@ main.o: main.cpp headers/Builder.h \
 		headers/Undo_Edit.h \
 		headers/Undo_Delete.h \
 		headers/Validator.h \
-		headers/UI.h
+		headers/UI.h \
+		headers/GUI.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 Validator.o: Validator.cpp headers/Validator.h
@@ -768,9 +792,9 @@ Repository.o: Repository/Repository.cpp headers/Repository.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Repository.o Repository/Repository.cpp
 
 UI.o: UI/UI.cpp headers/UI.h \
-		headers/debug.h \
 		headers/Controller.h \
 		headers/Repository.h \
+		headers/debug.h \
 		headers/Activity.h \
 		headers/not_unique.h \
 		headers/back_exception.h \
@@ -781,6 +805,24 @@ UI.o: UI/UI.cpp headers/UI.h \
 		headers/Undo_Delete.h \
 		headers/Validator.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o UI.o UI/UI.cpp
+
+GUI.o: UI/GUI.cpp headers/GUI.h \
+		headers/Controller.h \
+		headers/Repository.h \
+		headers/debug.h \
+		headers/Activity.h \
+		headers/not_unique.h \
+		headers/back_exception.h \
+		headers/Undo_Action.h \
+		headers/Undo_Add.h \
+		headers/File_Repository.h \
+		headers/Undo_Edit.h \
+		headers/Undo_Delete.h \
+		headers/Validator.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o GUI.o UI/GUI.cpp
+
+moc_GUI.o: moc_GUI.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_GUI.o moc_GUI.cpp
 
 ####### Install
 

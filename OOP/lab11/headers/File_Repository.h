@@ -12,7 +12,8 @@ private:
 	void		pull_from_file();
 	void		push_to_file();
 public:
-	File_Repository(std::string file_name) : Repository(), file_name { file_name }	{
+	File_Repository(std::string file_name) : Repository(), file_name { file_name }
+	{
 		pull_from_file();
 	}
 

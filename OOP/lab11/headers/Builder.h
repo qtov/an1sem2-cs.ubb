@@ -5,6 +5,7 @@
 #include "Repository.h"
 #include "Controller.h"
 #include "UI.h"
+#include "GUI.h"
 
 class Builder {
 public:

@@ -20,7 +20,7 @@ public:
 	void	set_type(const string&);
 	void	set_duration(const int&);
 	friend ostream&	operator<<(ostream& stream, const Activity& activity)
-	{	
+	{
 		cout << "Title: " << activity.get_title() << "\n";
 		cout << "Description: " << activity.get_description() << "\n";
 		cout << "Type: " << activity.get_type() << "\n";
@@ -32,6 +32,7 @@ public:
 	bool	operator==(const Activity& v) const;
 	bool	operator<(const Activity& v) const;
 	bool	operator>(const Activity& v) const;
+	string	printable_form();
 
 private:
 	string	title;

@@ -30,4 +30,5 @@ SOURCES += Builder.cpp \
            Model/Activity.cpp \
            Repository/File_Repository.cpp \
            Repository/Repository.cpp \
-           UI/UI.cpp
+           UI/UI.cpp \
+    UI/GUI.cpp
