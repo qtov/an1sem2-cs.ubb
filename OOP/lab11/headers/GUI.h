@@ -36,12 +36,18 @@ private:
 	QApplication* app;
 	void		setup_gui();
 	void		connect_gui();
+	void		add_to_list(Activity&);
 	void		update_list();
+	void		refresh_list();
 
 public slots:
 	void	add();
 	void	edit();
 	void	remove();
+	void	search();
+
+private:
+	vector<QListWidgetItem*> act_lst;
 };
 
 #endif

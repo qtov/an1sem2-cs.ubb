@@ -7,6 +7,16 @@ GUI::GUI(Controller* _ctrl)
 	this->connect_gui();
 }
 
+void	GUI::add_to_list(Activity& activity)
+{
+	string	str = "";
+
+	str += activity.get_title() + "; " + activity.get_description() + "; " + activity.get_type() + "; " + std::to_string(activity.get_duration());
+
+	this->act_lst.push_back(new QListWidgetItem(QString::fromStdString(str), this->activities));
+	// new QListWidgetItem(QString::fromStdString(str), this->activities);
+}
+
 void	GUI::setup_gui()
 {
 	this->setContentsMargins(10, 10, 10, 10);
@@ -45,8 +55,8 @@ void	GUI::setup_gui()
 		this->fil_search = new QPushButton(QObject::tr("&Search"));
 
 	activities = new QListWidget();
-	new QListWidgetItem("Item1", activities);
-	new QListWidgetItem("Item2", activities);
+	// new QListWidgetItem("Item1", activities);
+	// new QListWidgetItem("Item2", activities);
 
 	main_lay->addLayout(left_lay);
 	main_lay->addLayout(right_lay);
@@ -88,6 +98,8 @@ void	GUI::setup_gui()
 	sort_lay->addWidget(sort_title_btn);
 	sort_lay->addWidget(sort_desc_btn);
 	sort_lay->addWidget(sort_type_btn);
+
+	this->refresh_list();
 }
 
 void	GUI::connect_gui()
@@ -95,6 +107,7 @@ void	GUI::connect_gui()
 	QObject::connect(add_btn, SIGNAL(clicked()), this, SLOT(add()));
 	QObject::connect(upd_btn, SIGNAL(clicked()), this, SLOT(edit()));
 	QObject::connect(rm_btn, SIGNAL(clicked()), this, SLOT(remove()));
+	QObject::connect(sort_title_btn, SIGNAL(clicked()), this, SLOT(search()));
 }
 
 void	GUI::add()
@@ -116,7 +129,7 @@ void	GUI::add()
 	dur = stoi(input);
 	try
 	{
-		this->controller->add(title, description, type, duration);
+		this->ctrl->add(title, desc, type, dur);
 	}
 	catch (const not_unique& e)
 	{
@@ -132,7 +145,8 @@ void	GUI::add()
 
 	str += title + "; " + desc + "; " + type + "; " + input;
 
-	new QListWidgetItem(QString::fromStdString(str), activities);
+	// new QListWidgetItem(QString::fromStdString(str), this->activities);
+	this->refresh_list();
 }
 
 void	GUI::edit()
@@ -147,8 +161,10 @@ void	GUI::edit()
 	type = this->txt_type->displayText().toStdString();
 	dur = this->txt_dur->displayText().toStdString();
 
-	if (this->ctrl->exists(title) || !this->ctrl->isvalid_title(title))
+	if (!this->ctrl->exists(title) || !this->ctrl->isvalid_title(title))
+	{
 		return;
+	}
 
 	this->ctrl->edit(title, desc, type, dur);
 
@@ -156,6 +172,8 @@ void	GUI::edit()
 	this->txt_dur->clear();
 	this->txt_type->clear();
 	this->txt_desc->clear();
+
+	this->refresh_list();
 }
 
 void	GUI::remove()
@@ -172,4 +190,31 @@ void	GUI::remove()
 	}
 	catch (const invalid_argument& e)
 	{}
+
+	this->refresh_list();
+}
+
+void	GUI::refresh_list()
+{
+	vector<Activity>* lst;
+
+	this->activities->clear();
+	for (auto elem : this->act_lst)
+	{
+
+	}
+
+	lst = ctrl->get_list();
+
+	for (auto& elem:*lst)
+	{
+		this->add_to_list(elem);
+	}
+
+	delete lst;
+}
+
+void	GUI::search()
+{
+
 }
