@@ -1,6 +1,10 @@
 import collections
 
 def copy_matrix(matrix_a):
+	"""
+	input: matrice de adiacenta
+	output: copie matrice de adiacenta
+	"""
 	i = 0
 	num_nodes = len(matrix_a)
 	new_matrix = [[0 for x in range(num_nodes)] for y in range(num_nodes)]
@@ -13,6 +17,11 @@ def copy_matrix(matrix_a):
 	return new_matrix
 
 def breadth_first(matrix_a, source, sink, parent):
+	"""
+	input: matrice de adiacenta, sursa, destinatie, vector de parinti
+	output: daca in destinatia poate fi vizitata
+	vectorul de parinti se modifica
+	"""
 	visited = [False for x in range(len(matrix_a))]
 	queue = collections.deque()
 
@@ -31,26 +40,29 @@ def breadth_first(matrix_a, source, sink, parent):
 	return visited[sink]
 
 def ford_fulkerson(matrix_a_param, source, sink):
+	"""
+	input: matrice de adiacenta(cu costuri), sursa, destinatie
+	output: fluxul maxim
+	"""
 	num_nodes = len(matrix_a_param)
 	parent = [-1 for x in range(num_nodes)]
 	matrix_a = copy_matrix(matrix_a_param)
 	max_flow = 0
 
 	while (breadth_first(matrix_a, source, sink, parent)):
-		path_flow = float('inf')
+		max_cap = float('inf')
 		s = sink
 		while (s != source):
-			path_flow = min(path_flow, matrix_a[parent[s]][s])
+			max_cap = min(max_cap, matrix_a[parent[s]][s])
 			s = parent[s]
 
-		max_flow += path_flow
+		max_flow += max_cap
 
-		v = sink
-		while (v != source):
-			par = parent[v]
-			matrix_a[par][v] -= path_flow
-			matrix_a[v][par] += path_flow
-			v = parent[v]
+		s = sink
+		while (s != source):
+			matrix_a[parent[s]][s] -= max_cap
+			matrix_a[s][parent[s]] += max_cap
+			s = parent[s]
 
 	return max_flow
 
