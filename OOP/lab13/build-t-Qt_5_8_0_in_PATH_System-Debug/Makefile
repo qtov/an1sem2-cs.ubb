@@ -50,11 +50,15 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../t/main.cpp \
 		../t/tbl.cpp \
-		../t/drw.cpp moc_tbl.cpp \
+		../t/drw.cpp \
+		../t/controller.cpp \
+		../t/repository.cpp moc_tbl.cpp \
 		moc_drw.cpp
 OBJECTS       = main.o \
 		tbl.o \
 		drw.o \
+		controller.o \
+		repository.o \
 		moc_tbl.o \
 		moc_drw.o
 DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
@@ -236,9 +240,13 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/features/lex.prf \
 		../t/t.pro ../t/tbl.h \
 		../t/drw.h \
-		../t/observer.h ../t/main.cpp \
+		../t/observer.h \
+		../t/controller.h \
+		../t/repository.h ../t/main.cpp \
 		../t/tbl.cpp \
-		../t/drw.cpp
+		../t/drw.cpp \
+		../t/controller.cpp \
+		../t/repository.cpp
 QMAKE_TARGET  = t
 DESTDIR       = 
 TARGET        = t
@@ -628,8 +636,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../t/tbl.h ../t/drw.h ../t/observer.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../t/main.cpp ../t/tbl.cpp ../t/drw.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../t/tbl.h ../t/drw.h ../t/observer.h ../t/controller.h ../t/repository.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../t/main.cpp ../t/tbl.cpp ../t/drw.cpp ../t/controller.cpp ../t/repository.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../t/tbl.ui $(DISTDIR)/
 
 
@@ -666,12 +674,16 @@ compiler_moc_header_make_all: moc_tbl.cpp moc_drw.cpp
 compiler_moc_header_clean:
 	-$(DEL_FILE) moc_tbl.cpp moc_drw.cpp
 moc_tbl.cpp: ../t/observer.h \
+		../t/controller.h \
+		../t/repository.h \
 		../t/tbl.h \
 		moc_predefs.h \
 		/usr/bin/moc
 	/usr/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/rexu/Coding/University/sem_2/OOP/lab13/t -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I. -I/usr/include/c++/6.3.1 -I/usr/include/c++/6.3.1/x86_64-pc-linux-gnu -I/usr/include/c++/6.3.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.3.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.3.1/include-fixed -I/usr/include ../t/tbl.h -o moc_tbl.cpp
 
 moc_drw.cpp: ../t/observer.h \
+		../t/controller.h \
+		../t/repository.h \
 		../t/drw.h \
 		moc_predefs.h \
 		/usr/bin/moc
@@ -698,18 +710,31 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 
 main.o: ../t/main.cpp ../t/tbl.h \
 		../t/observer.h \
+		../t/controller.h \
+		../t/repository.h \
 		../t/drw.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../t/main.cpp
 
 tbl.o: ../t/tbl.cpp ../t/tbl.h \
 		../t/observer.h \
+		../t/controller.h \
+		../t/repository.h \
 		../t/ui_tbl.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tbl.o ../t/tbl.cpp
 
 drw.o: ../t/drw.cpp ../t/drw.h \
 		../t/observer.h \
+		../t/controller.h \
+		../t/repository.h \
 		../t/ui_drw.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o drw.o ../t/drw.cpp
+
+controller.o: ../t/controller.cpp ../t/controller.h \
+		../t/repository.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o controller.o ../t/controller.cpp
+
+repository.o: ../t/repository.cpp ../t/repository.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o repository.o ../t/repository.cpp
 
 moc_tbl.o: moc_tbl.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_tbl.o moc_tbl.cpp

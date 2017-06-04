@@ -5,19 +5,25 @@
 
 using namespace std;
 
-class Observer {
+class Observer
+{
 public:
 	virtual void update() = 0;
 };
 
-class Observable {
+class Observable
+{
 protected:
 	vector<Observer*> obs;
+
 public:
-	void reg(Observer *s) {
+	void reg(Observer *s)
+	{
 		obs.push_back(s);
 	}
-	void notifyAll() {
+
+	void notify_all()
+	{
 		for (auto ob : obs) {
 			ob->update();
 		}
