@@ -1,0 +1,261 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - ex_test.info - lab8_9/Controller/Controller.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">lab8_9/Controller</a> - Controller.cpp<span style="font-size: 80%;"> (source / <a href="Controller.cpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">ex_test.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">11</td>
+            <td class="headerCovTableEntry">109</td>
+            <td class="headerCovTableEntryLo">10.1 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-06-04 16:23:19</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">5</td>
+            <td class="headerCovTableEntry">29</td>
+            <td class="headerCovTableEntryLo">17.2 %</td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : #include &quot;Controller.h&quot;</a>
+<span class="lineNum">       2 </span>            : 
+<a name="3"><span class="lineNum">       3 </span>            : using namespace std;</a>
+<span class="lineNum">       4 </span>            : 
+<span class="lineNum">       5 </span><span class="lineCov">          1 : Controller::Controller(File_Repository* _frepo, Validator* _validator)</span>
+<span class="lineNum">       6 </span>            : {
+<span class="lineNum">       7 </span><span class="lineCov">          1 :         this-&gt;validator = _validator;</span>
+<span class="lineNum">       8 </span><span class="lineCov">          1 :         this-&gt;frepo = _frepo;</span>
+<a name="9"><span class="lineNum">       9 </span><span class="lineCov">          1 : }</span></a>
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span><span class="lineCov">          1 : bool                                            Controller::isvalid_number(const string&amp; s) const</span>
+<span class="lineNum">      12 </span>            : {
+<span class="lineNum">      13 </span><span class="lineCov">          1 :         return this-&gt;validator-&gt;isvalid_number(s);</span>
+<a name="14"><span class="lineNum">      14 </span>            : }</a>
+<span class="lineNum">      15 </span>            : 
+<span class="lineNum">      16 </span><span class="lineNoCov">          0 : bool                                            Controller::isvalid_title(const string&amp; s) const</span>
+<span class="lineNum">      17 </span>            : {
+<span class="lineNum">      18 </span><span class="lineNoCov">          0 :         return this-&gt;validator-&gt;isvalid_title(s);</span>
+<a name="19"><span class="lineNum">      19 </span>            : }</a>
+<span class="lineNum">      20 </span>            : 
+<span class="lineNum">      21 </span><span class="lineNoCov">          0 : bool                                            Controller::isvalid_type(const string&amp; s) const</span>
+<span class="lineNum">      22 </span>            : {
+<span class="lineNum">      23 </span><span class="lineNoCov">          0 :         return this-&gt;validator-&gt;isvalid_type(s);</span>
+<a name="24"><span class="lineNum">      24 </span>            : }</a>
+<span class="lineNum">      25 </span>            : 
+<span class="lineNum">      26 </span><span class="lineNoCov">          0 : bool                                            Controller::isvalid_description(const string&amp; s) const</span>
+<span class="lineNum">      27 </span>            : {
+<span class="lineNum">      28 </span><span class="lineNoCov">          0 :         return this-&gt;validator-&gt;isvalid_description(s);</span>
+<a name="29"><span class="lineNum">      29 </span>            : }</a>
+<span class="lineNum">      30 </span>            : 
+<span class="lineNum">      31 </span><span class="lineNoCov">          0 : bool                                            Controller::isvalid_filename(const string&amp; s) const</span>
+<span class="lineNum">      32 </span>            : {
+<span class="lineNum">      33 </span><span class="lineNoCov">          0 :         return this-&gt;validator-&gt;isvalid_filename(s);</span>
+<a name="34"><span class="lineNum">      34 </span>            : }</a>
+<span class="lineNum">      35 </span>            : 
+<span class="lineNum">      36 </span><span class="lineNoCov">          0 : void                                            Controller::add_to_undo(const std::string&amp; add_what)</span>
+<span class="lineNum">      37 </span>            : {
+<span class="lineNum">      38 </span>            :         vector&lt;Activity&gt;* list;
+<span class="lineNum">      39 </span>            : 
+<span class="lineNum">      40 </span><span class="lineNoCov">          0 :         list = this-&gt;frepo-&gt;get_list();</span>
+<span class="lineNum">      41 </span><span class="lineNoCov">          0 :         if (add_what == &quot;add&quot;)</span>
+<span class="lineNum">      42 </span><span class="lineNoCov">          0 :                 this-&gt;undo_list.insert(undo_list.begin(), new Undo_Add(list, this-&gt;frepo));</span>
+<span class="lineNum">      43 </span><span class="lineNoCov">          0 :         else if (add_what == &quot;edit&quot;)</span>
+<span class="lineNum">      44 </span><span class="lineNoCov">          0 :                 this-&gt;undo_list.insert(undo_list.begin(), new Undo_Edit(list, this-&gt;frepo));</span>
+<span class="lineNum">      45 </span><span class="lineNoCov">          0 :         else if (add_what == &quot;delete&quot;)</span>
+<span class="lineNum">      46 </span><span class="lineNoCov">          0 :                 this-&gt;undo_list.insert(undo_list.begin(), new Undo_Delete(list, this-&gt;frepo));</span>
+<a name="47"><span class="lineNum">      47 </span><span class="lineNoCov">          0 : }</span></a>
+<span class="lineNum">      48 </span>            : 
+<span class="lineNum">      49 </span><span class="lineNoCov">          0 : void                                            Controller::add(const std::string&amp; _title, const std::string&amp; _description, const std::string&amp; _type, const int&amp; _duration)</span>
+<span class="lineNum">      50 </span>            : {
+<span class="lineNum">      51 </span><span class="lineNoCov">          0 :         this-&gt;add_to_undo(&quot;add&quot;);</span>
+<span class="lineNum">      52 </span><span class="lineNoCov">          0 :         this-&gt;frepo-&gt;add(_title, _description, _type, _duration);</span>
+<a name="53"><span class="lineNum">      53 </span><span class="lineNoCov">          0 : }</span></a>
+<span class="lineNum">      54 </span>            : 
+<span class="lineNum">      55 </span><span class="lineNoCov">          0 : void                                            Controller::remove(const std::string&amp; _title)</span>
+<span class="lineNum">      56 </span>            : {
+<span class="lineNum">      57 </span><span class="lineNoCov">          0 :         if (this-&gt;exists(_title))</span>
+<span class="lineNum">      58 </span>            :         {
+<span class="lineNum">      59 </span><span class="lineNoCov">          0 :                 this-&gt;add_to_undo(&quot;delete&quot;);</span>
+<span class="lineNum">      60 </span><span class="lineNoCov">          0 :                 this-&gt;frepo-&gt;remove(_title);</span>
+<span class="lineNum">      61 </span>            :         }
+<span class="lineNum">      62 </span>            :         else
+<span class="lineNum">      63 </span>            :         {
+<span class="lineNum">      64 </span><span class="lineNoCov">          0 :                 throw invalid_argument(&quot;Item does not exist.&quot;);</span>
+<span class="lineNum">      65 </span>            :         }
+<a name="66"><span class="lineNum">      66 </span><span class="lineNoCov">          0 : }</span></a>
+<span class="lineNum">      67 </span>            : 
+<span class="lineNum">      68 </span><span class="lineNoCov">          0 : bool                                            Controller::exists(const std::string&amp; _title)</span>
+<span class="lineNum">      69 </span>            : {
+<span class="lineNum">      70 </span><span class="lineNoCov">          0 :         return this-&gt;frepo-&gt;exists(_title);</span>
+<a name="71"><span class="lineNum">      71 </span>            : }</a>
+<span class="lineNum">      72 </span>            : 
+<span class="lineNum">      73 </span><span class="lineNoCov">          0 : std::vector&lt;Activity&gt;*            Controller::get_list() const</span>
+<span class="lineNum">      74 </span>            : {
+<span class="lineNum">      75 </span>            :         std::vector&lt;Activity&gt;*    list;
+<span class="lineNum">      76 </span>            : 
+<span class="lineNum">      77 </span><span class="lineNoCov">          0 :         list = this-&gt;frepo-&gt;get_list();</span>
+<span class="lineNum">      78 </span><span class="lineNoCov">          0 :         return list;</span>
+<a name="79"><span class="lineNum">      79 </span>            : }</a>
+<span class="lineNum">      80 </span>            : 
+<span class="lineNum">      81 </span><span class="lineNoCov">          0 : std::vector&lt;Activity&gt;*            Controller::get_list_filtered(const string&amp; filter_what, const string&amp; input)</span>
+<span class="lineNum">      82 </span>            : {
+<span class="lineNum">      83 </span>            :         std::vector&lt;Activity&gt;*    list;
+<span class="lineNum">      84 </span><span class="lineNoCov">          0 :         list = this-&gt;frepo-&gt;get_list();</span>
+<span class="lineNum">      85 </span><span class="lineNoCov">          0 :         std::vector&lt;Activity&gt;*    new_list = new std::vector&lt;Activity&gt;(list-&gt;size());</span>
+<span class="lineNum">      86 </span>            : 
+<a name="87"><span class="lineNum">      87 </span><span class="lineNoCov">          0 :         if (filter_what == &quot;description&quot;)</span></a>
+<span class="lineNum">      88 </span>            :         {
+<span class="lineNum">      89 </span><span class="lineNoCov">          0 :                 auto it = std::copy_if(list-&gt;begin(), list-&gt;end(), new_list-&gt;begin(), [input](auto elem) {</span>
+<span class="lineNum">      90 </span><span class="lineNoCov">          0 :                         return elem.get_description() == input;</span>
+<span class="lineNum">      91 </span><span class="lineNoCov">          0 :                 });</span>
+<span class="lineNum">      92 </span><span class="lineNoCov">          0 :                 new_list-&gt;resize(std::distance(new_list-&gt;begin(), it));</span>
+<span class="lineNum">      93 </span>            :         }
+<a name="94"><span class="lineNum">      94 </span><span class="lineNoCov">          0 :         else if (filter_what == &quot;type&quot;)</span></a>
+<span class="lineNum">      95 </span>            :         {
+<span class="lineNum">      96 </span><span class="lineNoCov">          0 :                 auto it = std::copy_if(list-&gt;begin(), list-&gt;end(), new_list-&gt;begin(), [input](auto elem) {</span>
+<span class="lineNum">      97 </span><span class="lineNoCov">          0 :                         return elem.get_type() == input;</span>
+<span class="lineNum">      98 </span><span class="lineNoCov">          0 :                 });</span>
+<span class="lineNum">      99 </span><span class="lineNoCov">          0 :                 new_list-&gt;resize(std::distance(new_list-&gt;begin(), it));</span>
+<span class="lineNum">     100 </span>            :         }
+<span class="lineNum">     101 </span><span class="lineNoCov">          0 :         delete list;</span>
+<span class="lineNum">     102 </span>            : 
+<span class="lineNum">     103 </span><span class="lineNoCov">          0 :         return new_list;</span>
+<a name="104"><span class="lineNum">     104 </span>            : }</a>
+<span class="lineNum">     105 </span>            : 
+<span class="lineNum">     106 </span><span class="lineNoCov">          0 : std::vector&lt;Activity&gt;*            Controller::get_list_sorted(const string&amp; sort_by)</span>
+<span class="lineNum">     107 </span>            : {
+<span class="lineNum">     108 </span>            :         std::vector&lt;Activity&gt;     *list;
+<span class="lineNum">     109 </span>            : 
+<a name="110"><span class="lineNum">     110 </span><span class="lineNoCov">          0 :         list = this-&gt;frepo-&gt;get_list();</span></a>
+<span class="lineNum">     111 </span><span class="lineNoCov">          0 :         if (sort_by == &quot;title&quot;)</span>
+<span class="lineNum">     112 </span><span class="lineNoCov">          0 :                 std::sort(list-&gt;begin(), list-&gt;end(), [](const auto lelem, const auto relem) {</span>
+<span class="lineNum">     113 </span><span class="lineNoCov">          0 :                         return lelem.get_title() &lt; relem.get_title();</span>
+<a name="114"><span class="lineNum">     114 </span><span class="lineNoCov">          0 :                 });</span></a>
+<span class="lineNum">     115 </span><span class="lineNoCov">          0 :         else if (sort_by == &quot;description&quot;)</span>
+<span class="lineNum">     116 </span><span class="lineNoCov">          0 :                 std::sort(list-&gt;begin(), list-&gt;end(), [](const auto lelem, const auto relem) {</span>
+<span class="lineNum">     117 </span><span class="lineNoCov">          0 :                         return lelem.get_description() &lt; relem.get_description();</span>
+<a name="118"><span class="lineNum">     118 </span><span class="lineNoCov">          0 :                 });</span></a>
+<span class="lineNum">     119 </span><span class="lineNoCov">          0 :         else if (sort_by == &quot;type+duration&quot;)</span>
+<span class="lineNum">     120 </span><span class="lineNoCov">          0 :                 std::sort(list-&gt;begin(), list-&gt;end(), [](const auto lelem, const auto relem) {</span>
+<span class="lineNum">     121 </span><span class="lineNoCov">          0 :                         if (lelem.get_type() &lt; relem.get_type())</span>
+<span class="lineNum">     122 </span><span class="lineNoCov">          0 :                                 return true;</span>
+<span class="lineNum">     123 </span><span class="lineNoCov">          0 :                         else if (lelem.get_type() == relem.get_type())</span>
+<span class="lineNum">     124 </span><span class="lineNoCov">          0 :                                 if (lelem.get_duration() &lt; relem.get_duration())</span>
+<span class="lineNum">     125 </span><span class="lineNoCov">          0 :                                         return true;</span>
+<span class="lineNum">     126 </span><span class="lineNoCov">          0 :                         return false;</span>
+<span class="lineNum">     127 </span><span class="lineNoCov">          0 :                 });</span>
+<span class="lineNum">     128 </span><span class="lineNoCov">          0 :         return list;</span>
+<a name="129"><span class="lineNum">     129 </span>            : }</a>
+<span class="lineNum">     130 </span>            : 
+<span class="lineNum">     131 </span><span class="lineNoCov">          0 : std::vector&lt;Activity&gt;*            Controller::get_list_shuffled() const</span>
+<span class="lineNum">     132 </span>            : {
+<span class="lineNum">     133 </span>            :         std::vector&lt;Activity&gt;     *list;
+<span class="lineNum">     134 </span>            : 
+<span class="lineNum">     135 </span><span class="lineNoCov">          0 :         list = this-&gt;frepo-&gt;get_list();</span>
+<span class="lineNum">     136 </span><span class="lineNoCov">          0 :         auto seed = std::chrono::system_clock::now().time_since_epoch().count();</span>
+<span class="lineNum">     137 </span><span class="lineNoCov">          0 :         std::shuffle(list-&gt;begin(), list-&gt;end(), std::default_random_engine(seed));</span>
+<span class="lineNum">     138 </span><span class="lineNoCov">          0 :         return list;</span>
+<a name="139"><span class="lineNum">     139 </span>            : }</a>
+<span class="lineNum">     140 </span>            : 
+<span class="lineNum">     141 </span><span class="lineNoCov">          0 : void                                            Controller::edit(std::string&amp; _title, std::string&amp; _description, std::string&amp; _type, std::string&amp; _duration)</span>
+<span class="lineNum">     142 </span>            : {
+<span class="lineNum">     143 </span><span class="lineNoCov">          0 :         if (!this-&gt;validator-&gt;isvalid_description(_description))</span>
+<span class="lineNum">     144 </span><span class="lineNoCov">          0 :                 _description = &quot;&quot;;</span>
+<span class="lineNum">     145 </span><span class="lineNoCov">          0 :         if (!this-&gt;validator-&gt;isvalid_type(_type))</span>
+<span class="lineNum">     146 </span><span class="lineNoCov">          0 :                 _type = &quot;&quot;;</span>
+<span class="lineNum">     147 </span><span class="lineNoCov">          0 :         if (!this-&gt;validator-&gt;isvalid_number(_duration))</span>
+<span class="lineNum">     148 </span><span class="lineNoCov">          0 :                 _duration = &quot;&quot;;</span>
+<span class="lineNum">     149 </span><span class="lineNoCov">          0 :         this-&gt;add_to_undo(&quot;edit&quot;);</span>
+<span class="lineNum">     150 </span><span class="lineNoCov">          0 :         this-&gt;frepo-&gt;edit(_title, _description, _type, _duration);</span>
+<a name="151"><span class="lineNum">     151 </span><span class="lineNoCov">          0 : }</span></a>
+<span class="lineNum">     152 </span>            : 
+<span class="lineNum">     153 </span><span class="lineNoCov">          0 : void                                            Controller::delete_list()</span>
+<span class="lineNum">     154 </span>            : {
+<span class="lineNum">     155 </span><span class="lineNoCov">          0 :         this-&gt;add_to_undo(&quot;delete&quot;);</span>
+<span class="lineNum">     156 </span><span class="lineNoCov">          0 :         this-&gt;frepo-&gt;delete_list();</span>
+<a name="157"><span class="lineNum">     157 </span><span class="lineNoCov">          0 : }</span></a>
+<span class="lineNum">     158 </span>            : 
+<span class="lineNum">     159 </span><span class="lineNoCov">          0 : void                                            Controller::undo()</span>
+<span class="lineNum">     160 </span>            : {
+<span class="lineNum">     161 </span><span class="lineNoCov">          0 :         if (!this-&gt;undo_list.empty())</span>
+<span class="lineNum">     162 </span>            :         {
+<span class="lineNum">     163 </span><span class="lineNoCov">          0 :                 this-&gt;undo_list[0]-&gt;do_undo();</span>
+<span class="lineNum">     164 </span><span class="lineNoCov">          0 :                 delete this-&gt;undo_list[0];</span>
+<span class="lineNum">     165 </span><span class="lineNoCov">          0 :                 this-&gt;undo_list.erase(this-&gt;undo_list.begin());</span>
+<span class="lineNum">     166 </span>            :         }
+<a name="167"><span class="lineNum">     167 </span><span class="lineNoCov">          0 : }</span></a>
+<span class="lineNum">     168 </span>            : 
+<span class="lineNum">     169 </span><span class="lineNoCov">          0 : void                                            Controller::save_another(const std::string&amp; s)</span>
+<span class="lineNum">     170 </span>            : {
+<span class="lineNum">     171 </span><span class="lineNoCov">          0 :         this-&gt;frepo-&gt;push_to_specific_file(s);</span>
+<a name="172"><span class="lineNum">     172 </span><span class="lineNoCov">          0 : }</span></a>
+<span class="lineNum">     173 </span>            : 
+<span class="lineNum">     174 </span><span class="lineNoCov">          0 : Activity&amp;                                   Controller::get_elem(const std::string&amp; _title)</span>
+<span class="lineNum">     175 </span>            : {
+<span class="lineNum">     176 </span><span class="lineNoCov">          0 :         return this-&gt;frepo-&gt;get_elem(_title);</span>
+<a name="177"><span class="lineNum">     177 </span>            : }</a>
+<span class="lineNum">     178 </span>            : 
+<span class="lineNum">     179 </span><span class="lineCov">          2 : Controller::~Controller()</span>
+<span class="lineNum">     180 </span>            : {
+<span class="lineNum">     181 </span><span class="lineCov">          1 :         delete this-&gt;validator;</span>
+<span class="lineNum">     182 </span><span class="lineCov">          1 :         delete this-&gt;frepo;</span>
+<a name="183"><span class="lineNum">     183 </span><span class="lineCov">          1 :         for (auto* mini_list : this-&gt;undo_list)</span></a>
+<span class="lineNum">     184 </span><span class="lineNoCov">          0 :                 delete mini_list;</span>
+<span class="lineNum">     185 </span><span class="lineCov">          4 : }</span>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>
