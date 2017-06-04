@@ -14,7 +14,7 @@ public:
 	repository();
 	void	add(int, int, int);
 	int		get_size();
-	std::vector<std::vector<int>> get_list();
+	std::vector<std::vector<int>>& get_list();
 	void	empty_list();
 	void	remove_last();
 	~repository();

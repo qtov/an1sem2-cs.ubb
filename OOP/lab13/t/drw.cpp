@@ -9,6 +9,7 @@ drw::drw(controller *_ctrl, QWidget *parent) :
 	ui->setupUi(this);
 	this->ctrl = _ctrl;
 	this->ctrl->reg(this);
+	setAttribute(Qt::WA_DeleteOnClose);
 }
 
 void	drw::update_drw()
@@ -18,5 +19,6 @@ void	drw::update_drw()
 
 drw::~drw()
 {
+	this->ctrl->rm_lst(this);
 	delete ui;
 }

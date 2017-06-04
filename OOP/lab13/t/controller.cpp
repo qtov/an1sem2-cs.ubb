@@ -21,7 +21,7 @@ int		controller::get_size()
 	return this->repo->get_size();
 }
 
-std::vector<std::vector<int>> controller::get_list()
+std::vector<std::vector<int>>& controller::get_list()
 {
 	return this->repo->get_list();
 }
@@ -36,4 +36,9 @@ void	controller::remove_last()
 {
 	this->repo->remove_last();
 	notify_all();
+}
+
+void	controller::rm_lst(Observer* _obs)
+{
+	this->obs.erase(std::remove(this->obs.begin(), this->obs.end(), _obs), this->obs.end());	
 }

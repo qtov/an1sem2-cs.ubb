@@ -5,6 +5,7 @@ GUI::GUI(Controller* _ctrl)
 	this->ctrl = _ctrl;
 	this->setup_gui();
 	this->connect_gui();
+	setAttribute(Qt::WA_DeleteOnClose);
 }
 
 void	GUI::add_to_list(Activity& activity)

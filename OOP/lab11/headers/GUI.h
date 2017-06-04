@@ -37,7 +37,6 @@ private:
 	QPushButton* shuffle_btn;
 	QListWidget* activities;
 	Controller* ctrl;
-	QApplication* app;
 	void	setup_gui();
 	void	connect_gui();
 	void	add_to_list(Activity&);

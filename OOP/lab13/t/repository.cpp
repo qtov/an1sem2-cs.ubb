@@ -1,9 +1,6 @@
 #include "repository.h"
 
-repository::repository()
-{
-
-}
+repository::repository() {}
 
 repository::~repository()
 {
@@ -25,7 +22,7 @@ int		repository::get_size()
 	return this->list.size();
 }
 
-std::vector<std::vector<int>> repository::get_list()
+std::vector<std::vector<int>>& repository::get_list()
 {
 	return this->list;
 }

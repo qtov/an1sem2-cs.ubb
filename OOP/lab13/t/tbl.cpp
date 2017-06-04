@@ -12,6 +12,7 @@ tbl::tbl(controller *_ctrl, QWidget *parent) :
 	this->setup_gui();
 	this->connect_gui();
 	this->update_tbl();
+	setAttribute(Qt::WA_DeleteOnClose);
 }
 
 void	tbl::setup_gui()
@@ -114,4 +115,5 @@ tbl::~tbl()
 {
 	this->lst->clear();
 	delete ui;
+	this->ctrl->rm_lst(this);
 }

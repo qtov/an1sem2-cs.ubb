@@ -8,9 +8,11 @@ int	main(int argc, char** argv)
 	QApplication a(argc, argv);
 
 	Builder	builder;
-	GUI		gui(builder.getController());
+	GUI		*gui = new GUI(builder.getController());
 
-	gui.show();
+	gui->show();
 
-	return a.exec();
+	int ret = a.exec();
+
+	return ret;
 }

@@ -11,11 +11,11 @@ int main(int argc, char *argv[])
 
 	srand(time(NULL));
 
-	tbl w(ctrl);
-	drw q(ctrl);
+	tbl *w = new tbl(ctrl);
+	drw *q = new drw(ctrl);
 
-	w.show();
-	q.show();
+	w->show();
+	q->show();
 
 	int ret = a.exec();
 
