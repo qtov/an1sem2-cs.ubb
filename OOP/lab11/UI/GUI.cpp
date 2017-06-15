@@ -115,7 +115,6 @@ void	GUI::connect_gui()
 	QObject::connect(add_btn, SIGNAL(clicked()), this, SLOT(add()));
 	QObject::connect(upd_btn, SIGNAL(clicked()), this, SLOT(edit()));
 	QObject::connect(rm_btn, SIGNAL(clicked()), this, SLOT(remove()));
-	QObject::connect(sort_title_btn, SIGNAL(clicked()), this, SLOT(search()));
 	QObject::connect(undo_btn, SIGNAL(clicked()), this, SLOT(undo()));
 	QObject::connect(refresh_btn, SIGNAL(clicked()), this, SLOT(refresh_list()));
 	QObject::connect(fil_search_btn, SIGNAL(clicked()), this, SLOT(search()));
