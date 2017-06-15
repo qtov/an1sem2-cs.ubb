@@ -1,7 +1,6 @@
 #ifndef GUI_H
 #define GUI_H
 
-#include <QApplication>
 #include <QWidget>
 #include <QHBoxLayout>
 #include <QPushButton>
@@ -49,15 +48,12 @@ public slots:
 	void	search();
 	void	undo();
 	void	refresh_list();
-	void	sort_title();
 	void	sort_desc();
 	void	sort_type();
 	void	filter_desc();
 	void	filter_type();
 	void	shuffle();
-
-private:
-	vector<QListWidgetItem*> act_lst;
+	void	sorting_something();
 };
 
 #endif

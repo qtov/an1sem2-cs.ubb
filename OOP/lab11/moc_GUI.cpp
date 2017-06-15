@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_GUI_t {
     QByteArrayData data[14];
-    char stringdata0[109];
+    char stringdata0[116];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -39,18 +39,18 @@ QT_MOC_LITERAL(4, 14, 6), // "remove"
 QT_MOC_LITERAL(5, 21, 6), // "search"
 QT_MOC_LITERAL(6, 28, 4), // "undo"
 QT_MOC_LITERAL(7, 33, 12), // "refresh_list"
-QT_MOC_LITERAL(8, 46, 10), // "sort_title"
-QT_MOC_LITERAL(9, 57, 9), // "sort_desc"
-QT_MOC_LITERAL(10, 67, 9), // "sort_type"
-QT_MOC_LITERAL(11, 77, 11), // "filter_desc"
-QT_MOC_LITERAL(12, 89, 11), // "filter_type"
-QT_MOC_LITERAL(13, 101, 7) // "shuffle"
+QT_MOC_LITERAL(8, 46, 9), // "sort_desc"
+QT_MOC_LITERAL(9, 56, 9), // "sort_type"
+QT_MOC_LITERAL(10, 66, 11), // "filter_desc"
+QT_MOC_LITERAL(11, 78, 11), // "filter_type"
+QT_MOC_LITERAL(12, 90, 7), // "shuffle"
+QT_MOC_LITERAL(13, 98, 17) // "sorting_something"
 
     },
     "GUI\0add\0\0edit\0remove\0search\0undo\0"
-    "refresh_list\0sort_title\0sort_desc\0"
-    "sort_type\0filter_desc\0filter_type\0"
-    "shuffle"
+    "refresh_list\0sort_desc\0sort_type\0"
+    "filter_desc\0filter_type\0shuffle\0"
+    "sorting_something"
 };
 #undef QT_MOC_LITERAL
 
@@ -110,12 +110,12 @@ void GUI::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **
         case 3: _t->search(); break;
         case 4: _t->undo(); break;
         case 5: _t->refresh_list(); break;
-        case 6: _t->sort_title(); break;
-        case 7: _t->sort_desc(); break;
-        case 8: _t->sort_type(); break;
-        case 9: _t->filter_desc(); break;
-        case 10: _t->filter_type(); break;
-        case 11: _t->shuffle(); break;
+        case 6: _t->sort_desc(); break;
+        case 7: _t->sort_type(); break;
+        case 8: _t->filter_desc(); break;
+        case 9: _t->filter_type(); break;
+        case 10: _t->shuffle(); break;
+        case 11: _t->sorting_something(); break;
         default: ;
         }
     }
