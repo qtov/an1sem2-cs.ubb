@@ -10,6 +10,8 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = t
 TEMPLATE = app
+QMAKE_CXXFLAGS += -ftest-coverage
+QMAKE_LFLAGS += -ftest-coverage
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked as deprecated (the exact warnings
@@ -22,6 +24,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+LIBS += \
+	-lgcov
 
 SOURCES += main.cpp\
         tbl.cpp \
