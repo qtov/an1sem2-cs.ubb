@@ -118,12 +118,12 @@ void	GUI::connect_gui()
 	QObject::connect(undo_btn, SIGNAL(clicked()), this, SLOT(undo()));
 	QObject::connect(refresh_btn, SIGNAL(clicked()), this, SLOT(refresh_list()));
 	QObject::connect(fil_search_btn, SIGNAL(clicked()), this, SLOT(search()));
+	QObject::connect(sort_title_btn, SIGNAL(clicked()), this, SLOT(sorting_something()));
 	QObject::connect(sort_type_btn, SIGNAL(clicked()), this, SLOT(sort_type()));
 	QObject::connect(sort_desc_btn, SIGNAL(clicked()), this, SLOT(sort_desc()));
 	QObject::connect(shuffle_btn, SIGNAL(clicked()), this, SLOT(shuffle()));
 	QObject::connect(fil_desc_btn, SIGNAL(clicked()), this, SLOT(filter_desc()));
 	QObject::connect(fil_type_btn, SIGNAL(clicked()), this, SLOT(filter_type()));
-	QObject::connect(sort_title_btn, SIGNAL(clicked()), this, SLOT(sorting_something()));
 }
 
 void	GUI::add()
